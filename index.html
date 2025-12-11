@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FoodLab</title>
+  <style>
+    :root{
+      --bg: #b9bc4d; --surface: rgba(154, 92, 46, 0.87); --text: #400c0c; --muted: #511a05;
+      --accent: #6e7021; --accent-2: #400c0c; --radius:12px; --shadow:0 8px 24px rgba(0,0,0,0.08);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter, "Segoe UI", system-ui, Arial; background:linear-gradient(180deg,var(--bg), rgba(94, 101, 30, 0.81));color:var(--text)}
+    header.app-header{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;background: rgb(71, 101, 44);backdrop-filter:blur(6px);border-bottom:1px solid #711515
+    }
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;box-shadow:var(--shadow);font-size:20px}
+    main.content{max-width:1100px;margin:20px auto;padding:16px}
+    .controls{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;margin-bottom:12px}
+    .search{display:flex;gap:8px}
+    input[type="text"]{padding:12px;border-radius:10px;border:1px solid #3d682c;min-width:220px}
+    button{border:0;padding:10px 14px;border-radius:10px;cursor:pointer}
+    .primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color: rgba(170, 174, 64, 0.47);box-shadow:0 6px 18px rgba(255,127,80,0.14)}
+    .ghost{background: #799541;border:1px solid #28470b
+    }
+    .chip-list{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{background: rgba(115, 119, 37, 0.47);padding:8px 12px;border-radius:20px;display:inline-flex;align-items:center;gap:8px}
+    .chip .remove{cursor:pointer;padding-left:6px}
+    .filters{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+    .filter-btn{padding:8px 10px;border-radius:999px;border:1px solid #400c0c;background: rgba(184, 177, 42, 0.7);cursor:pointer}
+    .filter-btn.active{background:var(--accent);color: #9a8748;border-color:transparent}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:14px}
+    .card{background:var(--surface);border-radius:var(--radius);padding:12px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px;transition:transform .14s ease}
+    .card:hover{transform:translateY(-6px)}
+
+    .badge{background: rgba(237, 200, 52, 0.75);padding:4px 8px;border-radius:999px;font-size:12px}
+    .meta{display:flex;justify-content:space-between;align-items:center}
+    .muted{color:var(--muted);font-size:13px}
+    .empty{color:var(--muted);text-align:center;margin-top:14px}
+    footer.app-footer{text-align:center;padding:18px;color:var(--muted);font-size:13px}
+    /* modal */
+    dialog#recipeModal{width:min(720px,95%);border-radius:14px;padding:0;border:0;box-shadow:var(--shadow)}
+    .modal-header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid rgba(194, 200, 38, 0.82)
+    }
+    .modal-body{padding:16px;max-height:60vh;overflow:auto;gap:12px;display:flex;flex-direction:column}
+    .steps{margin:0;padding-left:18px}
+    .fav{cursor:pointer;font-size:18px}
+    .match{font-weight:600}
+    @media (max-width:700px){
+      .controls{grid-template-columns:1fr}
+      .search{flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <div class="logo"></div>
+      <div>
+        <h1 style="margin:0;font-size:18px">FoodLab</h1>
+        <div style="font-size:13px;color:var(--muted)">Type ingredients — get recipes</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <button id="surpriseBtn" class="ghost" title="Surprise me">
+      <button id="clearAll" class="ghost" title="Clear all">Clear</button>
+      <button id="openTips" class="ghost">Tips</button>
+    </div>
+  </header>
+
+<main class="content">
+    <section class="controls">
+      <div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <div class="search">
+            <label for="ingredientInput" style="display:none">Add</label>
+            <input id="ingredientInput" type="text" placeholder="e.g., tomato, rice, chicken" autocomplete="off" />
+            <button id="addIngredient" class="primary">Add</button>
+            <button id="voiceBtn" class="ghost" title="Voice input">🎤</button>
+          </div>
+          <div style="margin-left:8px;color:var(--muted);font-size:13px">Saved ingredients persist locally</div>
+        </div>
+
+        <div id="suggestions" class="suggestions" style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap"></div>
+
+        <div style="margin-top:10px">
+          <div class="chip-list" id="selectedChips"></div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-end">
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <div class="filters" id="categoryFilters" style="padding:0"></div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <select id="difficultyFilter" class="filter-btn">
+            <option value="">All difficulties</option>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+
+          <select id="timeFilter" class="filter-btn">
+            <option value="">Any time</option>
+            <option value="20">Under 20 min</option>
+            <option value="40">Under 40 min</option>
+            <option value="60">Under 60 min</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="grid" id="recipesGrid"></div>
+      <p id="emptyState" class="empty">No matches yet. Add ingredients or relax filters.</p>
+    </section>
+  </main>
+
+  <dialog id="tipsDialog">
+    <form method="dialog" style="padding:16px;width:320px">
+      <h3>Quick tips</h3>
+      <ul>
+        <li>Start typing to see ingredient suggestions.</li>
+        <li>Click “Add” or press Enter to include an ingredient.</li>
+        <li>Click a recipe to view steps and generate a shopping list.</li>
+      </ul>
+      <div style="text-align:right"><button value="close" class="primary">Close</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="recipeModal">
+    <div class="modal-header">
+      <div>
+        <strong id="modalTitle">Recipe</strong>
+        <div id="modalMeta" class="muted" style="font-size:13px"></div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <div id="modalFav" class="fav" title="Toggle favorite">☆</div>
+        <button id="modalClose" class="ghost">Close</button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <img id="modalImg" class="recipe-img" src="" alt="">
+      <div><strong>Ingredients</strong>: <span id="modalIngredients" class="muted"></span></div>
+      <div><strong>Missing</strong>: <span id="modalMissing" class="muted"></span></div>
+      <div><strong>Steps</strong>:</div>
+      <ol id="modalSteps" class="steps"></ol>
+      <div style="display:flex;gap:8px">
+        <button id="generateList" class="primary">Generate shopping list</button>
+        <button id="cookNow" class="ghost">Mark cooked</button>
+      </div>
+    </div>
+  </dialog>
+
+  <footer class="app-footer">
+    Made with love for food lovers
+  </footer>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+
+    // Elements
+    const ingredientInput = document.getElementById("ingredientInput");
+    const addIngredientBtn = document.getElementById("addIngredient");
+    const selectedChips = document.getElementById("selectedChips");
+
+const recipesGrid = document.getElementById("recipesGrid");
+    const emptyState = document.getElementById("emptyState");
+    const openTipsBtn = document.getElementById("openTips");
+    const tipsDialog = document.getElementById("tipsDialog");
+    const clearAllBtn = document.getElementById("clearAll");
+    const suggestionsContainer = document.getElementById("suggestions");
+    const categoryFiltersEl = document.getElementById("categoryFilters");
+    const difficultyFilter = document.getElementById("difficultyFilter");
+    const timeFilter = document.getElementById("timeFilter");
+    const surpriseBtn = document.getElementById("surpriseBtn");
+    const voiceBtn = document.getElementById("voiceBtn");
+
+    // Modal elements
+    const recipeModal = document.getElementById("recipeModal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalMeta = document.getElementById("modalMeta");
+    const modalImg = document.getElementById("modalImg");
+    const modalIngredients = document.getElementById("modalIngredients");
+    const modalMissing = document.getElementById("modalMissing");
+    const modalSteps = document.getElementById("modalSteps");
+    const modalFav = document.getElementById("modalFav");
+    const modalClose = document.getElementById("modalClose");
+    const generateListBtn = document.getElementById("generateList");
+    const cookNowBtn = document.getElementById("cookNow");
+
+    // State
+    let ingredients = JSON.parse(localStorage.getItem("ptp_ingredients") || "[]");
+    let favorites = JSON.parse(localStorage.getItem("ptp_favs") || "[]");
+    let activeCategory = "";
+    let currentRecipe = null;
+
+    // Categories (localized-ish)
+    const categories = [
+      { id: "vegetables", name: "Vegetables" },
+      { id: "meat", name: "Meat" },
+      { id: "grains", name: "Grains" },
+      { id: "dairy", name: "Dairy" },
+      { id: "spices", name: "Spices" },
+      { id: "fruits", name: "Fruits" },
+      { id: "other", name: "Other" }
+    ];
+
+    // Ingredient suggestions extended (Uzbek-friendly + general)
+    const ingredientSuggestions = [
+      "tomato","onion","carrot","potato","garlic","bell pepper","cabbage","cucumber","spinach",
+      "eggplant","pumpkin","radish","beetroot","turnip","green onion","garlic leaves",
+      "chicken","beef","lamb","mutton","goat meat","fish","shrimp","egg",
+      "milk","cheese","butter","yogurt","sour cream","cream","kefir",
+      "rice","wheat","barley","millet","flour","bread","noodles","pasta","semolina",
+      "lentils","beans","chickpeas","peas",
+      "salt","black pepper","red pepper","paprika","cumin","coriander","bay leaf","dill","parsley","cilantro",
+      "vegetable oil","sunflower oil","olive oil","soy sauce","vinegar","tomato paste",
+      "apple","banana","grape","pomegranate","melon","watermelon","apricot","plum","cherry","lemon",
+      "sugar","honey","nuts","raisins","dates","mayonnaise","potato starch","mint"
+    ];
+
+    // Helper to random time/difficulty for demo recipes
+    function randChoice(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+    function randTime(){ return [10,15,20,25,30,35,40,45,50,60][Math.floor(Math.random()*10)]; }
+    function randDifficulty(){ return randChoice(["easy","medium","hard"]); }
+
+    // Recipes — 50 items with metadata (image placeholders and steps)
+    const recipes = [
+      { name:"Plov (Pilaf)", ingredients:["rice","carrot","onion","lamb","garlic"], cuisine:"Uzbek", difficulty:"medium", time:60, tags:["dinner","traditional"], steps:["Soak rice and parboil.", "Fry meat and carrots, combine and simmer."] },
+      { name:"Shashlik", ingredients:["lamb","onion","salt","pepper"], cuisine:"Uzbek", difficulty:"medium", time:40, tags:["grill"], steps:["Marinate meat, skewer and grill."] },
+      { name:"Manti", ingredients:["flour","minced lamb","onion","salt"], cuisine:"Uzbek", difficulty:"hard", time:90, tags:["dumpling"], steps:["Prepare dough, stuff and steam."] },
+
+{ name:"Lagman", ingredients:["noodles","beef","tomato","bell pepper","onion"], cuisine:"Central Asian", difficulty:"medium", time:45, tags:["noodle"], steps:["Cook broth, fry vegetables, add noodles."] },
+      { name:"Samsa", ingredients:["flour","butter","minced meat","onion"], cuisine:"Uzbek", difficulty:"medium", time:70, tags:["baked"], steps:["Prepare dough, fill, and bake until golden."] },
+      { name:"Tomato Rice", ingredients:["tomato","rice"], cuisine:"International", difficulty:"easy", time:25, tags:["quick"], steps:["Cook rice, mix with tomato sauce."] },
+      { name:"Chicken Curry", ingredients:["chicken","onion","tomato","garlic"], cuisine:"Asian", difficulty:"medium", time:40, tags:["spicy"], steps:["Fry spices and onions, add chicken and simmer."] },
+      { name:"Cheese Omelette", ingredients:["egg","cheese","milk"], cuisine:"International", difficulty:"easy", time:10, tags:["breakfast"], steps:["Beat eggs with milk, fry with cheese."] },
+      { name:"Vegetable Stir Fry", ingredients:["carrot","bell pepper","spinach","garlic"], cuisine:"Asian", difficulty:"easy", time:15, tags:["vegan"], steps:["Quick stir fry vegetables in hot oil."] },
+      { name:"Beef Stew", ingredients:["beef","carrot","potato","onion"], cuisine:"International", difficulty:"medium", time:90, tags:["stew"], steps:["Brown beef, add vegetables and simmer."] },
+      { name:"Pasta Alfredo", ingredients:["pasta","cheese","milk","butter","garlic"], cuisine:"Italian", difficulty:"easy", time:20, tags:["comfort"], steps:["Cook pasta, make cheese sauce, combine."] },
+      { name:"Garlic Butter Fish", ingredients:["fish","garlic","butter","lemon"], cuisine:"International", difficulty:"easy", time:20, tags:["seafood"], steps:["Pan-fry fish with garlic butter and lemon."] },
+      { name:"Spinach Salad", ingredients:["spinach","tomato","cucumber","lemon"], cuisine:"International", difficulty:"easy", time:10, tags:["healthy"], steps:["Mix fresh ingredients and dress with lemon."] },
+      { name:"Mushroom Soup", ingredients:["eggplant","onion","garlic","cream"], cuisine:"International", difficulty:"medium", time:35, tags:["soup"], steps:["Sauté mushrooms and onions, simmer with cream."] },
+      { name:"Egg Sandwich", ingredients:["egg","bread","butter","cheese"], cuisine:"International", difficulty:"easy", time:10, tags:["breakfast"], steps:["Make scrambled or fried egg and assemble sandwich."] },
+      { name:"Shrimp Pasta", ingredients:["shrimp","pasta","garlic","olive oil"], cuisine:"Seafood", difficulty:"medium", time:25, tags:["seafood"], steps:["Cook pasta, sauté shrimp with garlic, combine."] },
+      { name:"Salmon Salad", ingredients:["fish","lettuce","lemon"], cuisine:"International", difficulty:"easy", time:15, tags:["healthy"], steps:["Grill salmon, serve on salad with lemon."] },
+      { name:"Tuna Sandwich", ingredients:["fish","bread","mayonnaise","lettuce"], cuisine:"International", difficulty:"easy", time:8, tags:["quick"], steps:["Mix tuna with mayo and assemble."] },
+      { name:"Bacon Omelette", ingredients:["egg","butter","cheese"], cuisine:"International", difficulty:"easy", time:12, tags:["breakfast"], steps:["Cook bacon, add eggs and cheese."] },
+      { name:"Chicken Fried Rice", ingredients:["chicken","rice","egg","onion","soy sauce"], cuisine:"Asian", difficulty:"easy", time:20, tags:["quick"], steps:["Fry rice with chicken, veggies and egg."] },
+      { name:"Vegetable Soup", ingredients:["carrot","potato","cabbage","onion"], cuisine:"International", difficulty:"easy", time:40, tags:["soup"], steps:["Simmer vegetables until tender."] },
+      { name:"Lentil Soup", ingredients:["lentils","carrot","onion","garlic"], cuisine:"International", difficulty:"easy", time:45, tags:["vegan"], steps:["Cook lentils with aromatics until soft."] },
+
+{ name:"Banana Smoothie", ingredients:["banana","milk","honey"], cuisine:"International", difficulty:"easy", time:5, tags:["drink"], steps:["Blend all until smooth."] },
+      { name:"Apple Salad", ingredients:["apple","lettuce","cucumber","honey"], cuisine:"International", difficulty:"easy", time:10, tags:["salad"], steps:["Chop ingredients and toss with honey dressing."] },
+      { name:"Cabbage Stir Fry", ingredients:["cabbage","carrot","garlic","soy sauce"], cuisine:"Asian", difficulty:"easy", time:15, tags:["veg"], steps:["Quickly stir fry cabbage and carrots."] },
+      { name:"Chicken Salad", ingredients:["chicken","lettuce","tomato","olive oil"], cuisine:"International", difficulty:"easy", time:20, tags:["healthy"], steps:["Combine cooked chicken with fresh greens and dress."] },
+      { name:"Garlic Bread", ingredients:["bread","garlic","butter","parsley"], cuisine:"Italian", difficulty:"easy", time:12, tags:["side"], steps:["Toast bread with garlic butter and parsley."] },
+      { name:"Tomato Soup", ingredients:["tomato","onion","garlic","cream"], cuisine:"International", difficulty:"easy", time:30, tags:["soup"], steps:["Cook tomatoes with aromatics and blend with cream."] },
+      { name:"Cheese Pizza", ingredients:["cheese","tomato","flour","oregano"], cuisine:"Italian", difficulty:"medium", time:50, tags:["baked"], steps:["Prepare dough, top and bake."] },
+      { name:"Vegetable Pasta", ingredients:["pasta","eggplant","carrot","bell pepper","olive oil"], cuisine:"International", difficulty:"easy", time:25, tags:["veg"], steps:["Sauté vegetables and toss with pasta."] },
+      { name:"Beef Burger", ingredients:["beef","bread","lettuce","tomato","cheese"], cuisine:"American", difficulty:"medium", time:30, tags:["grill"], steps:["Form patties, cook and assemble burger."] },
+      { name:"Chicken Sandwich", ingredients:["chicken","bread","lettuce","tomato"], cuisine:"International", difficulty:"easy", time:12, tags:["quick"], steps:["Cook chicken and assemble sandwich."] },
+      { name:"Shrimp Stir Fry", ingredients:["shrimp","carrot","garlic"], cuisine:"Asian", difficulty:"easy", time:12, tags:["seafood"], steps:["Stir fry shrimp with veggies."] },
+      { name:"Salmon Pasta", ingredients:["fish","pasta","cream","garlic"], cuisine:"Seafood", difficulty:"medium", time:30, tags:["comfort"], steps:["Combine salmon and cream sauce with pasta."] },
+      { name:"Tuna Salad", ingredients:["fish","lettuce","tomato","olive oil"], cuisine:"International", difficulty:"easy", time:10, tags:["quick"], steps:["Mix and serve chilled."] },
+      { name:"Bacon Sandwich", ingredients:["bread","bacon","egg"], cuisine:"International", difficulty:"easy", time:12, tags:["breakfast"], steps:["Cook bacon and egg, assemble."] },
+      { name:"Chicken Soup", ingredients:["chicken","carrot","onion","potato"], cuisine:"International", difficulty:"easy", time:60, tags:["comfort"], steps:["Simmer chicken with vegetables until tender."] },
+      { name:"Vegetable Curry", ingredients:["carrot","potato","peas","onion","garlic"], cuisine:"Indian", difficulty:"medium", time:40, tags:["spicy"], steps:["Cook spices, add vegetables and simmer."] },
+      { name:"Spinach Soup", ingredients:["spinach","onion","garlic","cream"], cuisine:"International", difficulty:"easy", time:25, tags:["healthy"], steps:["Simmer and blend spinach with cream."] },
+      { name:"Mushroom Pasta", ingredients:["eggplant","pasta","cream","garlic"], cuisine:"International", difficulty:"easy", time:25, tags:["comfort"], steps:["Sauté mushrooms and toss with pasta."] },
+      { name:"Egg Fried Rice", ingredients:["egg","rice","onion","soy sauce"], cuisine:"Asian", difficulty:"easy", time:15, tags:["quick"], steps:["Fry rice with egg and seasoning."] },
+      { name:"Chicken Pasta", ingredients:["chicken","pasta","tomato","garlic"], cuisine:"International", difficulty:"easy", time:25, tags:["family"], steps:["Combine chicken with tomato sauce and pasta."] },
+
+{ name:"Beef Stir Fry", ingredients:["beef","bell pepper","carrot","soy sauce"], cuisine:"Asian", difficulty:"medium", time:20, tags:["quick"], steps:["Stir fry beef with vegetables and sauce."] },
+      { name:"Cheese Sandwich", ingredients:["bread","cheese","butter"], cuisine:"International", difficulty:"easy", time:8, tags:["snack"], steps:["Grill cheese sandwich until golden."] },
+      { name:"Lemon Fish", ingredients:["fish","lemon","garlic","olive oil"], cuisine:"International", difficulty:"easy", time:20, tags:["seafood"], steps:["Bake or pan-fry fish with lemon."] }
+    ];
+
+    // Enhance recipes with random metadata where not provided
+    recipes.forEach(r => {
+      if (!r.time) r.time = randTime();
+      if (!r.difficulty) r.difficulty = randDifficulty();
+      if (!r.tags) r.tags = [];
+      if (!r.cuisine) r.cuisine = "International";
+      // placeholder image: use data URI with colored background and recipe initials
+      const initials = r.name.split(" ").slice(0,2).map(w=>w[0]).join("").toUpperCase();
+    });
+
+    // Build category buttons
+    function renderCategoryButtons(){
+      categoryFiltersEl.innerHTML = "";
+      categories.forEach(c => {
+        const btn = document.createElement("button");
+        btn.className = "filter-btn";
+        btn.textContent = c.name;
+        btn.dataset.id = c.id;
+        btn.addEventListener("click", () => {
+          activeCategory = activeCategory === c.id ? "" : c.id;
+          document.querySelectorAll("#categoryFilters .filter-btn").forEach(b=>b.classList.remove("active"));
+          if (activeCategory) btn.classList.add("active");
+          updateRecipes();
+        });
+        categoryFiltersEl.appendChild(btn);
+      });
+    }
+
+    // Suggestions update
+    function updateSuggestions(){
+      const q = ingredientInput.value.trim().toLowerCase();
+      suggestionsContainer.innerHTML = "";
+      if (!q) return;
+      const filtered = ingredientSuggestions.filter(i=>i.includes(q) && !ingredients.includes(i)).slice(0,10);
+      filtered.forEach(i=>{
+        const d = document.createElement("div");
+        d.className = "filter-btn";
+        d.textContent = i;
+        d.addEventListener("click", ()=>{ addIngredient(i); ingredientInput.value = ""; suggestionsContainer.innerHTML = ""; });
+        suggestionsContainer.appendChild(d);
+      });
+    }
+
+    // Render selected chips
+    function renderChips(){
+      selectedChips.innerHTML = "";
+      ingredients.forEach(item=>{
+        const el = document.createElement("div");
+        el.className = "chip";
+        el.innerHTML = item + ' <span class="remove" title="Remove">×</span>';
+        el.querySelector(".remove").addEventListener("click", ()=>{ removeIngredient(item); });
+        selectedChips.appendChild(el);
+      });
+      localStorage.setItem("ptp_ingredients", JSON.stringify(ingredients));
+    }
+
+    function addIngredient(name){
+      if (!name) return;
+      name = name.trim().toLowerCase();
+      if (!ingredients.includes(name)){
+        ingredients.push(name);
+        renderChips();
+        updateRecipes();
+      }
+    }
+
+    function removeIngredient(name){
+      ingredients = ingredients.filter(i=>i!==name);
+      renderChips();
+      updateRecipes();
+    }
+
+    function toggleFavorite(recipeName){
+      if (favorites.includes(recipeName)){
+        favorites = favorites.filter(f=>f!==recipeName);
+      } else {
+        favorites.push(recipeName);
+      }
+      localStorage.setItem("ptp_favs", JSON.stringify(favorites));
+      updateRecipes();
+    }
+
+    // Compute matches and render recipes
+    function updateRecipes(){
+      recipesGrid.innerHTML = "";
+      const diff = difficultyFilter.value;
+      const tmax = timeFilter.value ? parseInt(timeFilter.value,10) : null;
+
+// Map recipes to match info
+      const mapped = recipes.map(r=>{
+        const have = r.ingredients.filter(i=>ingredients.includes(i));
+        const missing = r.ingredients.filter(i=>!ingredients.includes(i));
+        const score = have.length;
+        return Object.assign({}, r, { haveCount: have.length, missing: missing, score: score });
+      });
+
+      // Filter by activeCategory if set (simple heuristic: check if any ingredient belongs to category)
+      // For demo, basic mapping
+      function ingredientCategoryOf(name){
+        const n = name.toLowerCase();
+        if (/(tomato|onion|carrot|potato|cabbage|cucumber|spinach|eggplant|radish|beetroot|turnip|green onion|pumpkin)/.test(n)) return "vegetables";
+        if (/(chicken|beef|lamb|mutton|goat|fish|shrimp|bacon|sausage)/.test(n)) return "meat";
+        if (/(rice|wheat|barley|millet|flour|bread|noodles|pasta|semolina)/.test(n)) return "grains";
+        if (/(milk|cheese|butter|yogurt|cream|kefir|sour cream)/.test(n)) return "dairy";
+        if (/(salt|cumin|paprika|pepper|oregano|garlic|ginger)/.test(n)) return "spices";
+        if (/(apple|banana|grape|pomegranate|melon|apricot|plum|cherry|lemon)/.test(n)) return "fruits";
+        return "other";
+      }
+
+      let filtered = mapped.filter(r=>{
+        if (diff && r.difficulty !== diff) return false;
+        if (tmax && r.time > tmax) return false;
+        if (activeCategory){
+          // require that at least one ingredient of recipe belongs to category
+          const belongs = r.ingredients.some(i=>ingredientCategoryOf(i) === activeCategory);
+          if (!belongs) return false;
+        }
+        return true;
+      });
+
+      // Sort by score (haveCount desc) then time asc
+      filtered.sort((a,b)=>{ if (b.haveCount !== a.haveCount) return b.haveCount - a.haveCount; return a.time - b.time; });
+
+      if (filtered.length === 0){
+        emptyState.style.display = "block";
+        return;
+      } else {
+        emptyState.style.display = "none";
+      }
+
+      filtered.forEach(r=>{
+        const card = document.createElement("div");
+        card.className = "card";
+        // build innerHTML safely (simple)
+        const fav = favorites.includes(r.name) ? "★" : "☆";
+        let missingText = r.missing.length ? (r.missing.slice(0,4).join(", ") + (r.missing.length>4 ? "…" : "")) : "None";
+        const matchPercent = Math.round((r.haveCount / r.ingredients.length) * 100);
+        card.innerHTML =
+          '<div style="display:flex;justify-content:space-between;align-items:center"><strong>' + r.name + '</strong><div style="display:flex;gap:8px;align-items:center"><span class="muted">' + r.time + 'm</span><button class="favBtn" title="Toggle favorite">' + fav + '</button></div></div>' +
+          '<div class="badges"><span class="badge">' + r.cuisine + '</span><span class="badge">' + r.difficulty + '</span><span class="badge match">' + matchPercent + '% match</span></div>' +
+          '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px"><div class="muted">Missing: ' + r.missing.length + '</div><div><button class="ghost viewBtn">View</button></div></div>';
+        // events
+        const favBtn = card.querySelector(".favBtn");
+        favBtn.addEventListener("click", (e)=>{ e.stopPropagation(); toggleFavorite(r.name); });
+        const viewBtn = card.querySelector(".viewBtn");
+        viewBtn.addEventListener("click", ()=> openRecipeModal(r));
+        // clicking card opens modal too
+        card.addEventListener("click", ()=> openRecipeModal(r));
+        recipesGrid.appendChild(card);
+      });
+    }
+
+    function openRecipeModal(r){
+      currentRecipe = r;
+      modalTitle.textContent = r.name;
+      modalMeta.textContent = r.cuisine + " • " + r.difficulty + " • " + r.time + " min";
+
+modalImg.src = r.image;
+      modalIngredients.textContent = r.ingredients.join(", ");
+      modalMissing.textContent = r.missing.length ? r.missing.join(", ") : "None";
+      modalSteps.innerHTML = "";
+      (r.steps || []).forEach(s => {
+        const li = document.createElement("li");
+        li.textContent = s;
+        modalSteps.appendChild(li);
+      });
+      modalFav.textContent = favorites.includes(r.name) ? "★" : "☆";
+      recipeModal.showModal();
+    }
+
+    modalFav.addEventListener("click", ()=>{ if (!currentRecipe) return; toggleFavorite(currentRecipe.name); modalFav.textContent = favorites.includes(currentRecipe.name) ? "★" : "☆"; });
+
+    modalClose.addEventListener("click", ()=>{ recipeModal.close(); });
+
+    generateListBtn.addEventListener("click", ()=> {
+      if (!currentRecipe) return;
+      const missing = currentRecipe.missing;
+      if (missing.length === 0){
+        alert("You have all ingredients!");
+        return;
+      }
+      const list = missing.map(x => "- " + x).join("\n");
+      alert("Shopping list:\n\n" + list);
+    });
+
+    cookNowBtn.addEventListener("click", ()=> {
+      if (!currentRecipe) return;
+      alert("Marked as cooked: " + currentRecipe.name);
+      recipeModal.close();
+    });
+
+    // Surprise me
+    surpriseBtn.addEventListener("click", ()=> {
+      const idx = Math.floor(Math.random()*recipes.length);
+      openRecipeModal(recipes[idx]);
+    });
+
+    // Voice input (optional)
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window){
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const recog = new SpeechRecognition();
+      recog.lang = 'en-US';
+      recog.continuous = false;
+      recog.interimResults = false;
+      voiceBtn.addEventListener("click", ()=> {
+        recog.start();
+      });
+      recog.onresult = function(e){
+        const txt = e.results[0][0].transcript;
+        // split words by comma or space
+        txt.split(/[,\s]+/).forEach(w => { if (w.length>1) addIngredient(w.toLowerCase()); });
+      };
+    } else {
+      voiceBtn.style.display = "none";
+    }
+
+    // UI events
+    addIngredientBtn.addEventListener("click", ()=>{ addIngredient(ingredientInput.value); ingredientInput.value = ""; suggestionsContainer.innerHTML = ""; });
+    ingredientInput.addEventListener("keyup", (e)=>{ if (e.key === "Enter") { addIngredient(ingredientInput.value); ingredientInput.value = ""; suggestionsContainer.innerHTML = ""; } updateSuggestions(); });
+    ingredientInput.addEventListener("input", updateSuggestions);
+    clearAllBtn.addEventListener("click", ()=>{ ingredients = []; renderChips(); updateRecipes(); });
+    openTipsBtn.addEventListener("click", ()=> tipsDialog.showModal());
+    difficultyFilter.addEventListener("change", updateRecipes);
+    timeFilter.addEventListener("change", updateRecipes);
+
+    // initial render
+    renderCategoryButtons();
+    renderChips();
+    updateRecipes();
+
+    // Save favorites when updated elsewhere
+    window.addEventListener("storage", ()=> { favorites = JSON.parse(localStorage.getItem("ptp_favs") || "[]"); updateRecipes(); });
+
+  });
+  </script>
+</body>
+</html>
