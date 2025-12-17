@@ -1,9 +1,11 @@
 <!doctype html>
 <html lang="en">
+
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>FoodLab Pro</title>
+
 <style>
 :root{
   --bg: #fff9e9;
@@ -21,2719 +23,1411 @@ html,body{margin:0}
 body{
   font-family: Inter, "Segoe UI", system-ui, Arial;
   color:var(--text);
-
   background:
-
     radial-gradient(60% 100% at 0% 0%, #fff3d0 0%, transparent 60%),
-
     radial-gradient(50% 80% at 100% 0%, #ffe8b3 0%, transparent 50%),
-
     linear-gradient(180deg, var(--bg), #ffe6a8);
-
 }
-
 img{max-width:100%;display:block}
-
 a{color:inherit}
-
 .app{max-width:1280px;margin:0 auto;padding:0 16px}
-
 header.app-header{
-
   position:sticky;top:0;z-index:10;
-
   display:flex;align-items:center;justify-content:space-between;
-
   padding:14px 16px;background:rgba(255,255,255,0.75);
-
   backdrop-filter:blur(10px);
-
   border-bottom:1px solid #f1e5d0;
-
 }
-
 .brand{display:flex;gap:12px;align-items:center}
-
 .logo{
-
   width:44px;height:44px;border-radius:12px;
-
   background: conic-gradient(from 210deg, #f59f00, #ffe066, #ffd43b, #f59f00);
-
   display:grid;place-items:center;box-shadow:var(--shadow);font-weight:700;color:#3b2800;
-
 }
-
 .logo span{font-size:18px}
-
 .header-actions{display:flex;gap:8px;align-items:center}
-
 button, select{
-
-  border:0;padding:10px 12px;border-radius:10px;cursor:pointer;background:#fff;border:1px solid #eee;
-
+  border:0;padding:10px 12px;border-radius:10px;cursor:pointer;background:#fff; border:1px solid #eee;
 }
-
 button.primary{
-
   background:linear-gradient(180deg,#ffd43b,#f59f00);color:#3b2800;box-shadow:0 6px 18px rgba(245,159,0,0.2);border:0;
-
 }
-
 button.ghost{background:#fff;border:1px solid #eadfc6}
-
 button.danger{background:#fff0f0;border-color:#ffd0d0;color:#962727}
-
 .badge{
-
   background:#fff2cc;padding:4px 10px;border-radius:999px;font-size:12px;border:1px solid #f3d78a;
-
 }
-
 .badge.green{background:#e6ffef;border-color:#baf2c7}
-
 .badge.blue{background:#e7f5ff;border-color:#c5e8ff}
-
 .badge.gray{background:#f8f9fa;border-color:#e9ecef}
-
 main.content{padding:16px 0 32px}
-
 .controls{
-
   display:grid;grid-template-columns:1fr 360px;gap:16px;align-items:start;margin-bottom:14px;
-
 }
-
 .search{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-
 .search input[type="text"]{
-
   padding:12px;border-radius:10px;border:1px solid #e3d7bb;min-width:260px;background:#fff;
-
 }
-
 .sublabel{color:var(--muted);font-size:13px;margin-left:4px}
-
 .filters{display:flex;gap:8px;flex-wrap:wrap}
-
 .filter-btn{
-
   padding:8px 12px;border-radius:999px;border:1px solid #e3d7bb;background:#fff;cursor:pointer;color:#3b2800
-
 }
-
 .filter-btn.active{background:#fff4d6;border-color:#ffd66d}
-
 .lang-currency-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-
 .panel{
-
   background:var(--surface);border-radius:var(--radius);padding:12px;box-shadow:var(--shadow);border:1px solid #f1e5d0;
-
 }
-
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:14px}
-
 .card{
-
   background:#fff;border-radius:var(--radius);padding:12px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px;border:1px solid #f1e5d0;
-
   transition:transform .14s ease, box-shadow .14s ease;
-
 }
-
 .card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(0,0,0,0.12)}
-
 .card-head{display:flex;justify-content:space-between;align-items:center}
-
 .card-img{
-
   height:140px;border-radius:12px;overflow:hidden;background:#fff7e0;border:1px dashed #f1e5d0;display:grid;place-items:center;color:#a17c2b
-
 }
-
 .card-meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-
 .muted{color:var(--muted);font-size:13px}
-
 .empty{color:var(--muted);text-align:center;margin-top:16px}
-
 footer.app-footer{text-align:center;padding:22px;color:var(--muted);font-size:13px}
-
-
-
 dialog.modal{
-
   width:min(900px,95%);border-radius:16px;padding:0;border:0;box-shadow:var(--shadow);overflow:hidden
-
 }
-
 .modal-header{
-
   display:flex;justify-content:space-between;align-items:center;padding:14px 16px;
-
   border-bottom:1px solid #f1e5d0;background:#fff
-
 }
-
 .modal-body{padding:16px;max-height:70vh;overflow:auto;gap:16px;display:flex;flex-direction:column;background:#fffdf9}
-
 .modal-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:16px}
-
 .recipe-img{width:100%;height:200px;object-fit:cover;border-radius:12px;border:1px solid #f1e5d0;background:#fff7e0}
-
 .list{display:flex;flex-direction:column;gap:8px}
-
 .steps{margin:0;padding-left:18px}
-
 .quant{display:flex;justify-content:space-between}
-
 .quant .qty{color:#3b2800}
-
 .quant .need{color:#6b635b}
-
 .fav{cursor:pointer;font-size:18px}
-
 .toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-
-
-
 .cart{
-
   position:fixed;bottom:20px;right:20px;background:#fff;border:1px solid #f1e5d0;border-radius:14px;box-shadow:var(--shadow);padding:12px;max-width:380px;z-index:5
-
 }
-
 .cart h4{margin:0 0 8px 0}
-
 .cart-list{display:flex;flex-direction:column;gap:6px;max-height:220px;overflow:auto;margin-bottom:8px}
-
 .cart-item{display:flex;justify-content:space-between;align-items:center}
-
 .cart-total{display:flex;justify-content:space-between;align-items:center;padding-top:8px;border-top:1px dashed #eee}
-
 .cart-actions{display:flex;gap:8px;margin-top:8px}
-
-
-
 .table{width:100%;border-collapse:collapse}
-
 .table th, .table td{padding:8px;border-bottom:1px solid #f1e5d0;text-align:left;font-size:14px}
-
 .table th{color:#6b635b;font-weight:600;background:#fffdf1}
-
 .inline{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
-
 input[type="number"], input[type="text"] {background:#fff}
-
-
-
 .toast{
-
   position:fixed;top:14px;left:50%;transform:translateX(-50%);
-
   background:#3b2800;color:#fff;padding:10px 14px;border-radius:999px;box-shadow:var(--shadow);font-size:13px;display:none
-
 }
-
-
-
 .assistant{
-
   position:fixed;bottom:20px;left:20px;background:#fff;border:1px solid #f1e5d0;border-radius:14px;box-shadow:var(--shadow);padding:12px;max-width:420px;z-index:5
-
 }
-
 .assistant h4{margin:0 0 8px 0}
-
 .assistant-messages{display:flex;flex-direction:column;gap:8px;max-height:220px;overflow:auto;margin-bottom:8px}
-
 .assistant-msg{background:#fffdf5;border:1px solid #f1e5d0;border-radius:12px;padding:8px}
-
 .assistant-input{display:flex;gap:8px}
-
 .assistant-input input{flex:1;padding:8px;border:1px solid #e3d7bb;border-radius:10px}
-
-
-
 .save-collections{
-
   position:fixed;top:90px;right:20px;background:#fff;border:1px solid #f1e5d0;border-radius:14px;box-shadow:var(--shadow);padding:12px;max-width:300px;z-index:4
-
 }
-
 .save-collections h4{margin:0 0 8px 0}
-
 .save-item{display:flex;justify-content:space-between;align-items:center;border:1px solid #f1e5d0;border-radius:10px;padding:8px;background:#fffdf9}
-
-
-
 @media (max-width:900px){
-
   .modal-grid{grid-template-columns:1fr}
-
 }
-
 @media (max-width:700px){
-
   .controls{grid-template-columns:1fr}
-
   .search{flex-direction:column;align-items:stretch}
-
   .search input[type="text"]{min-width:unset}
-
 }
-
 </style>
-
 </head>
 
 <body>
-
 <div class="toast" id="toast"></div>
 
 <header class="app-header">
-
   <div class="brand">
-
     <div class="logo"><span>FL</span></div>
-
     <div>
-
       <h1 style="margin:0;font-size:18px">FoodLab</h1>
-
       <div id="tagline" class="muted" style="font-size:13px">Type ingredients — get recipes</div>
-
     </div>
-
   </div>
-
   <div class="header-actions">
-
     <button id="surpriseBtn" class="ghost" title="Surprise me">🎲</button>
-
     <button id="openTips" class="ghost">Tips</button>
-
     <button id="clearAll" class="ghost" title="Clear all">Clear</button>
-
   </div>
-
 </header>
 
-
-
 <div class="app">
-
   <main class="content">
-
     <section class="controls">
-
       <div>
-
         <div class="search">
-
           <label for="ingredientInput" style="display:none">Add</label>
-
           <input id="ingredientInput" type="text" placeholder="e.g., tomato 300g, rice 1kg, chicken 500g" autocomplete="off" />
-
           <button id="addIngredient" class="primary">Add</button>
-
           <button id="voiceBtn" class="ghost" title="Voice input">🎤</button>
-
         </div>
-
         <div class="sublabel" id="persistNote">Saved pantry persists locally</div>
-
         <div id="suggestions" class="inline" style="margin-top:8px"></div>
-
         <div style="margin-top:10px">
-
           <div class="panel">
-
             <div class="inline" style="justify-content:space-between">
-
               <div class="inline">
-
                 <strong id="pantryTitle">Pantry</strong>
-
                 <span class="badge gray" id="pantryCount">0 items</span>
-
               </div>
-
               <div class="inline">
-
                 <button id="importPantry" class="ghost">Import CSV</button>
-
                 <button id="exportPantry" class="ghost">Export CSV</button>
-
               </div>
-
             </div>
-
             <div class="chip-list" id="selectedChips" style="margin-top:8px"></div>
-
           </div>
-
         </div>
-
       </div>
-
-
 
       <div>
-
         <div class="panel">
-
           <div class="lang-currency-row">
-
             <div class="inline">
-
               <strong>Language</strong>
-
               <select id="langSelect" class="filter-btn">
-
                 <option value="en">English</option>
-
                 <option value="uz">Oʻzbekcha</option>
-
                 <option value="ru">Русский</option>
-
               </select>
-
             </div>
-
             <div class="inline">
-
               <strong>Max time</strong>
-
               <select id="timeFilter" class="filter-btn">
-
                 <option value="">{Any time}</option>
-
                 <option value="20">Under 20 min</option>
-
                 <option value="40">Under 40 min</option>
-
                 <option value="60">Under 60 min</option>
-
               </select>
-
             </div>
-
             <div class="inline">
-
               <strong>Difficulty</strong>
-
               <select id="difficultyFilter" class="filter-btn">
-
                 <option value="">All</option>
-
                 <option value="easy">Easy</option>
-
                 <option value="medium">Medium</option>
-
                 <option value="hard">Hard</option>
-
               </select>
-
             </div>
-
             <div class="inline">
-
               <strong>Servings</strong>
-
               <input id="servingsInput" type="number" min="1" value="4" style="width:72px;padding:8px;border-radius:10px;border:1px solid #e3d7bb" />
-
             </div>
-
           </div>
-
           <div class="filters" id="dietFilters" style="margin-top:8px"></div>
-
           <div class="filters" id="categoryFilters" style="margin-top:8px"></div>
-
         </div>
-
       </div>
-
     </section>
-
-
 
     <section>
-
       <div class="grid" id="recipesGrid"></div>
-
       <p id="emptyState" class="empty">No matches yet. Add ingredients or relax filters.</p>
-
     </section>
-
   </main>
 
-
-
   <footer class="app-footer">
-
     <div id="footerNote">Made with love for food lovers</div>
-
   </footer>
-
 </div>
 
-
-
 <dialog id="tipsDialog" class="modal">
-
   <form method="dialog">
-
     <div class="modal-header">
-
       <strong id="tipsTitle">Quick tips</strong>
-
       <button value="close" class="ghost">Close</button>
-
     </div>
-
     <div class="modal-body">
-
       <ul>
-
         <li id="tip1">Type ingredient with amount (“tomato 300g”) to add to pantry with quantity.</li>
-
         <li id="tip2">Press Enter or click Add. Voice input supports English, Uzbek, and Russian.</li>
-
         <li id="tip3">Click a recipe to view per-serving grams, spices, and basket price in UZS and USD.</li>
-
         <li id="tip4">Edit prices in the Price Catalog; totals will reflect your catalog.</li>
-
         <li id="tip5">Use Cook Mode for timers and step check-offs. Save/Unsave recipes.</li>
-
       </ul>
-
     </div>
-
   </form>
-
 </dialog>
 
-
-
 <dialog id="recipeModal" class="modal">
-
   <div class="modal-header">
-
     <div>
-
       <strong id="modalTitle">Recipe</strong>
-
       <div id="modalMeta" class="muted" style="font-size:13px"></div>
-
     </div>
-
     <div class="inline">
-
       <div id="modalFav" class="fav" title="Toggle favorite">☆</div>
-
       <button id="modalSave" class="ghost">Save</button>
-
       <button id="modalUnsave" class="ghost">Unsave</button>
-
       <button id="modalCookMode" class="ghost">Cook mode</button>
-
       <button id="modalClose" class="ghost">Close</button>
-
     </div>
-
   </div>
 
   <div class="modal-body">
-
     <div class="modal-grid">
-
       <div>
-
         <img id="modalImg" class="recipe-img" src="" alt="">
-
         <div class="panel list" style="margin-top:10px">
-
           <div class="inline" style="justify-content:space-between">
-
             <strong id="ingTitle">Ingredients</strong>
-
             <span class="badge green" id="matchBadge">0% match</span>
-
           </div>
-
           <div id="modalIngredients" class="list"></div>
-
           <div class="inline" style="justify-content:space-between;margin-top:6px">
-
             <strong id="spiceTitle">Spices</strong>
-
           </div>
-
           <div id="modalSpices" class="list"></div>
-
           <div class="inline" style="justify-content:space-between;margin-top:6px">
-
             <span class="muted" id="missingLabel">Missing:</span>
-
             <span id="modalMissing" class="muted">None</span>
-
           </div>
-
         </div>
-
       </div>
 
       <div>
-
         <div class="panel list">
-
           <strong id="stepsTitle">Steps</strong>
-
           <ol id="modalSteps" class="steps"></ol>
-
         </div>
 
         <div class="panel list" style="margin-top:10px">
-
           <div class="inline" style="justify-content:space-between">
-
             <strong id="priceTitle">Estimated basket</strong>
-
             <span class="badge" id="servingsBadge">for 4 servings</span>
-
           </div>
-
           <div id="priceBreakdown" class="list"></div>
-
           <div class="inline" style="justify-content:space-between;margin-top:8px">
-
             <div class="inline">
-
               <span class="badge blue" id="totalUZS">UZS 0</span>
-
               <span class="badge blue" id="totalUSD">$0.00</span>
-
             </div>
-
             <button id="addToCart" class="primary">Add missing to cart</button>
-
           </div>
-
         </div>
 
         <div class="toolbar">
-
           <button id="generateList" class="primary">Generate shopping list</button>
-
           <button id="cookNow" class="ghost">Mark cooked</button>
-
         </div>
-
       </div>
-
     </div>
-
   </div>
-
 </dialog>
-
-
 
 <dialog id="cookDialog" class="modal">
-
   <div class="modal-header">
-
     <strong id="cookTitle">Cook mode</strong>
-
     <button id="cookClose" class="ghost">Close</button>
-
   </div>
-
   <div class="modal-body">
-
     <div id="cookContent" class="list"></div>
-
   </div>
-
 </dialog>
 
-
-
 <dialog id="pricesDialog" class="modal">
-
   <div class="modal-header">
-
     <strong id="pricesTitle">Price catalog (Uzbekistan)</strong>
-
     <button id="pricesClose" class="ghost">Close</button>
-
   </div>
-
   <div class="modal-body">
-
     <div class="inline" style="justify-content:space-between">
-
       <div class="inline">
-
         <strong>UZS per unit</strong>
-
         <span class="muted">Unit: g for solids, ml for liquids, item for eggs/bread etc.</span>
-
       </div>
-
       <div class="inline">
-
         <strong>USD rate</strong>
-
         <input id="usdRateInput" type="number" step="0.0001" value="12600" style="width:100px;padding:6px;border-radius:10px;border:1px solid #e3d7bb" />
-
         <button id="saveRates" class="primary">Save</button>
-
       </div>
-
     </div>
 
     <table class="table" id="pricesTable">
-
       <thead>
-
         <tr>
-
           <th>Item</th><th>Unit</th><th>Price (UZS)</th><th></th>
-
         </tr>
-
       </thead>
-
       <tbody></tbody>
-
     </table>
 
     <div class="inline" style="margin-top:8px">
-
       <input id="newItemName" type="text" placeholder="New item name" style="padding:8px;border:1px solid #e3d7bb;border-radius:10px" />
-
       <select id="newItemUnit" style="padding:8px;border:1px solid #e3d7bb;border-radius:10px">
-
         <option value="g">g</option>
-
         <option value="ml">ml</option>
-
         <option value="item">item</option>
-
       </select>
-
       <input id="newItemPrice" type="number" step="1" placeholder="Price in UZS" style="padding:8px;border:1px solid #e3d7bb;border-radius:10px;width:140px" />
-
       <button id="addPriceItem" class="primary">Add</button>
-
     </div>
-
   </div>
-
 </dialog>
 
-
-
 <div class="cart" id="cartPanel">
-
   <h4 id="cartTitle">Cart</h4>
-
   <div class="cart-list" id="cartList"></div>
-
   <div class="cart-total">
-
     <div>
-
       <div class="inline">
-
         <span class="badge blue" id="cartUZS">UZS 0</span>
-
         <span class="badge blue" id="cartUSD">$0.00</span>
-
       </div>
-
       <div class="muted" id="cartItemsLabel">0 items</div>
-
     </div>
-
     <div class="cart-actions">
-
       <button id="openPrices" class="ghost">Prices</button>
-
       <button id="clearCart" class="danger">Clear</button>
-
     </div>
-
   </div>
-
 </div>
-
-
 
 <div class="assistant" id="assistantPanel">
-
   <h4 id="assistantTitle">AI assistant</h4>
-
   <div class="assistant-messages" id="assistantMessages"></div>
-
   <div class="assistant-input">
-
     <input id="assistantInput" type="text" placeholder="Ask: under 20 min vegan with your pantry, 7-day diabetic-friendly plan, swap lamb → chicken…" />
-
     <button id="assistantSend" class="primary">Send</button>
-
   </div>
-
 </div>
-
-
 
 <div class="save-collections" id="savePanel">
-
   <h4 id="saveTitle">Saved</h4>
-
   <div class="list" id="saveList"></div>
-
 </div>
 
-
-
 <script>
-
 document.addEventListener("DOMContentLoaded", function() {
-
-  // Elements
-
-  const ingredientInput = document.getElementById("ingredientInput");
-
-  const addIngredientBtn = document.getElementById("addIngredient");
-
-  const selectedChips = document.getElementById("selectedChips");
-
-  const pantryCountEl = document.getElementById("pantryCount");
-
-  const recipesGrid = document.getElementById("recipesGrid");
-
-  const emptyState = document.getElementById("emptyState");
-
-  const suggestionsContainer = document.getElementById("suggestions");
-
-  const categoryFiltersEl = document.getElementById("categoryFilters");
-
-  const dietFiltersEl = document.getElementById("dietFilters");
-
-  const difficultyFilter = document.getElementById("difficultyFilter");
-
-  const timeFilter = document.getElementById("timeFilter");
-
-  const surpriseBtn = document.getElementById("surpriseBtn");
-
-  const voiceBtn = document.getElementById("voiceBtn");
-
-  const clearAllBtn = document.getElementById("clearAll");
-
-  const openTipsBtn = document.getElementById("openTips");
-
-  const langSelect = document.getElementById("langSelect");
-
-  const servingsInput = document.getElementById("servingsInput");
-
-  const importPantryBtn = document.getElementById("importPantry");
-
-  const exportPantryBtn = document.getElementById("exportPantry");
-
-
-
-  // Modals
-
-  const tipsDialog = document.getElementById("tipsDialog");
-
-  const recipeModal = document.getElementById("recipeModal");
-
-  const cookDialog = document.getElementById("cookDialog");
-
-  const pricesDialog = document.getElementById("pricesDialog");
-
-
-
-  // Recipe modal elements
-
-  const modalTitle = document.getElementById("modalTitle");
-
-  const modalMeta = document.getElementById("modalMeta");
-
-  const modalImg = document.getElementById("modalImg");
-
-  const modalIngredients = document.getElementById("modalIngredients");
-
-  const modalSpices = document.getElementById("modalSpices");
-
-  const modalMissing = document.getElementById("modalMissing");
-
-  const modalSteps = document.getElementById("modalSteps");
-
-  const modalFav = document.getElementById("modalFav");
-
-  const modalSave = document.getElementById("modalSave");
-
-  const modalUnsave = document.getElementById("modalUnsave");
-
-  const modalClose = document.getElementById("modalClose");
-
-  const generateListBtn = document.getElementById("generateList");
-
-  const cookNowBtn = document.getElementById("cookNow");
-
-  const addToCartBtn = document.getElementById("addToCart");
-
-  const matchBadge = document.getElementById("matchBadge");
-
-  const priceBreakdown = document.getElementById("priceBreakdown");
-
-  const totalUZS = document.getElementById("totalUZS");
-
-  const totalUSD = document.getElementById("totalUSD");
-
-  const servingsBadge = document.getElementById("servingsBadge");
-
-  const modalCookMode = document.getElementById("modalCookMode");
-
-  const cookContent = document.getElementById("cookContent");
-
-  const cookClose = document.getElementById("cookClose");
-
-
-
-  // Prices elements
-
-  const pricesClose = document.getElementById("pricesClose");
-
-  const pricesTable = document.getElementById("pricesTable").querySelector("tbody");
-
-  const usdRateInput = document.getElementById("usdRateInput");
-
-  const saveRatesBtn = document.getElementById("saveRates");
-
-  const newItemName = document.getElementById("newItemName");
-
-  const newItemUnit = document.getElementById("newItemUnit");
-
-  const newItemPrice = document.getElementById("newItemPrice");
-
-  const addPriceItemBtn = document.getElementById("addPriceItem");
-
-  const openPricesBtn = document.getElementById("openPrices");
-
-
-
-  // Cart elements
-
-  const cartList = document.getElementById("cartList");
-
-  const cartUZS = document.getElementById("cartUZS");
-
-  const cartUSD = document.getElementById("cartUSD");
-
-  const cartItemsLabel = document.getElementById("cartItemsLabel");
-
-  const clearCartBtn = document.getElementById("clearCart");
-
-
-
-  // Assistant elements
-
-  const assistantMessages = document.getElementById("assistantMessages");
-
-  const assistantInput = document.getElementById("assistantInput");
-
-  const assistantSend = document.getElementById("assistantSend");
-
-
-
-  // Saved collections
-
-  const saveList = document.getElementById("saveList");
-
-
-
-  // Toast
-
-  const toast = document.getElementById("toast");
-
-
-
-  // State
-
-  let lang = localStorage.getItem("fl_lang") || "en";
-
-  langSelect.value = lang;
-
-
-
-  // Pantry: [{name, qty, unit}] unit: g/ml/item
-
-  let pantry = JSON.parse(localStorage.getItem("fl_pantry") || "[]");
-
-
-
-  // Favorites
-
-  let favorites = JSON.parse(localStorage.getItem("fl_favs") || "[]");
-
-
-
-  // Saved collections: [{recipeName, date}]
-
-  let saved = JSON.parse(localStorage.getItem("fl_saved") || "[]");
-
-
-
-  // Cart: [{name, qty, unit}]
-
-  let cart = JSON.parse(localStorage.getItem("fl_cart") || "[]");
-
-
-
-  // USD rate
-
-  let usdRate = parseFloat(localStorage.getItem("fl_usdRate") || "12600");
-
-  usdRateInput.value = usdRate;
-
-
-
-  // Categories
-
-  const categories = [
-
-    { id: "vegetables", name: {en:"Vegetables", uz:"Sabzavotlar", ru:"Овощи"} },
-
-    { id: "meat",       name: {en:"Meat", uz:"Go‘sht", ru:"Мясо"} },
-
-    { id: "grains",     name: {en:"Grains", uz:"Don", ru:"Зерновые"} },
-
-    { id: "dairy",      name: {en:"Dairy", uz:"Sut mahsulotlari", ru:"Молочные"} },
-
-    { id: "spices",     name: {en:"Spices", uz:"Ziravorlar", ru:"Специи"} },
-
-    { id: "fruits",     name: {en:"Fruits", uz:"Mevalar", ru:"Фрукты"} },
-
-    { id: "other",      name: {en:"Other", uz:"Boshqa", ru:"Другое"} }
-
-  ];
-
-  let activeCategory = "";
-
-
-
-  // Diet filters
-
-  const diets = [
-
-    {id:"diabetic", name:{en:"Diabetic-friendly", uz:"Diabetiklar uchun", ru:"Для диабетиков"}},
-
-    {id:"healthy", name:{en:"Healthy", uz:"Sog‘lom", ru:"Здоровое питание"}},
-
-    {id:"vegetarian", name:{en:"Vegetarian", uz:"Vegetarian", ru:"Вегетарианское"}},
-
-    {id:"vegan", name:{en:"Vegan", uz:"Vegan", ru:"Веганское"}},
-
-    {id:"high_protein", name:{en:"High-protein", uz:"Ko‘p oqsilli", ru:"Белковое"}},
-
-    {id:"low_sodium", name:{en:"Low-sodium", uz:"Kam tuzli", ru:"Мало соли"}}
-
-  ];
-
-  let activeDiets = new Set();
-
-
-
-  // i18n dictionary
-
-  const i18n = {
-
-    tagline: {en:"Type ingredients — get recipes", uz:"Mahsulotlarni yozing — retseptlar oling", ru:"Введите продукты — получите рецепты"},
-
-    persistNote: {en:"Saved pantry persists locally", uz:"Saqlangan ro‘yxat qurilmangizda saqlanadi", ru:"Список хранится локально"},
-
-    pantryTitle: {en:"Pantry", uz:"Ombor", ru:"Запасы"},
-
-    pantryCount: (n)=>({en:`${n} items`, uz:`${n} mahsulot`, ru:`${n} поз.`}),
-
-    tipsTitle: {en:"Quick tips", uz:"Tezkor maslahatlar", ru:"Советы"},
-
-    tip1:{en:'Type ingredient with amount (“tomato 300g”)', uz:'Mahsulotni miqdori bilan yozing (“pomidor 300g”)', ru:'Введите продукт с количеством (“помидор 300г”)'},
-
-    tip2:{en:"Press Enter or click Add. Voice supports EN/UZ/RU.", uz:"Enter bosing yoki Qo‘shish. Ovozi EN/UZ/RU.", ru:"Нажмите Enter или Добавить. Голос EN/UZ/RU."},
-
-    tip3:{en:"View grams, spices, and basket in UZS/USD.", uz:"Gramlar, ziravorlar va savat UZS/USD.", ru:"Граммы, специи и смета в UZS/USD."},
-
-    tip4:{en:"Edit the Price Catalog for local accuracy.", uz:"Narxlar katalogini tahrirlab aniqlik kiriting.", ru:"Редактируйте каталог цен для точности."},
-
-    tip5:{en:"Cook Mode + Save/Unsave collections.", uz:"Pishirish rejimi + Saqlash/O‘chirish.", ru:"Режим готовки + Сохранить/Удалить."},
-
-    emptyState:{en:"No matches yet. Add ingredients or relax filters.", uz:"Mos kelmadi. Mahsulot qo‘shing yoki filtrni yumshating.", ru:"Нет совпадений. Добавьте продукты или ослабьте фильтры."},
-
-    footerNote:{en:"Made with love for food lovers", uz:"Taom ixlosmandlari uchun sevgi bilan", ru:"Сделано с любовью для гурманов"},
-
-    ingTitle:{en:"Ingredients", uz:"Ingrediyentlar", ru:"Ингредиенты"},
-
-    spiceTitle:{en:"Spices", uz:"Ziravorlar", ru:"Специи"},
-
-    missingLabel:{en:"Missing:", uz:"Yetishmaydi:", ru:"Отсутствует:"},
-
-    stepsTitle:{en:"Steps", uz:"Bosqichlar", ru:"Шаги"},
-
-    priceTitle:{en:"Estimated basket", uz:"Taxminiy savat", ru:"Смета"},
-
-    servingsBadge:(n)=>({en:`for ${n} servings`, uz:`${n} porsiya uchun`, ru:`на ${n} порций`}),
-
-    cartTitle:{en:"Cart", uz:"Savat", ru:"Корзина"},
-
-    cartItems:(n)=>({en:`${n} items`, uz:`${n} mahsulot`, ru:`${n} поз.`}),
-
-    addToCart:{en:"Add missing to cart", uz:"Yetishmayotganlarni savatga qo‘shish", ru:"Добавить отсутствующее в корзину"},
-
-    cookMode:{en:"Cook mode", uz:"Pishirish rejimi", ru:"Режим готовки"},
-
-    markCooked:{en:"Mark cooked", uz:"Pishdi deb belgilash", ru:"Отметить приготовленным"},
-
-    close:{en:"Close", uz:"Yopish", ru:"Закрыть"},
-
-    assistantTitle:{en:"AI assistant", uz:"AI yordamchi", ru:"AI помощник"},
-
-    saveTitle:{en:"Saved", uz:"Saqlangan", ru:"Сохранено"},
-
-    saveButton:{en:"Save", uz:"Saqlash", ru:"Сохранить"},
-
-    unsaveButton:{en:"Unsave", uz:"O‘chirish", ru:"Удалить"}
-
-  };
-
-
-
-  // Ingredient suggestions (EN/UZ/RU + extras)
-
-  const ingredientSuggestions = [
-
-    "tomato","pomidor","помидор","onion","piyoz","лук","carrot","sabzi","морковь","potato","kartoshka","картофель",
-
-    "garlic","sarimsoq","чеснок","bell pepper","qalampir","перец","cabbage","karam","капуста","cucumber","bodring","огурец",
-
-    "spinach","ismaloq","шпинат","eggplant","baqlajon","баклажан","pumpkin","qovoq","тыква","green onion","yashil piyoz","зелёный лук",
-
-    "lamb","qo‘y go‘shti","баранина","beef","mol go‘shti","говядина","chicken","tovuq","курица","fish","baliq","рыба","shrimp","krevetka","креветка",
-
-    "egg","tuxum","яйцо","milk","sut","молоко","cheese","pishloq","сыр","butter","saryog‘","сливочное масло","yogurt","йогурт","cream","smetana","сливки",
-
-    "rice","guruch","рис","flour","un","мука","bread","non","хлеб","noodles","lapsha","лапша","pasta","makaron","паста",
-
-    "lentils","mas","чечевица","beans","loviya","фасоль","chickpeas","no‘xat","нут","peas","горох",
-
-    "salt","tuz","соль","black pepper","qora murch","чёрный перец","paprika","паприка","cumin","zira","кумин","coriander","kashnich","кориандр","bay leaf","lavr","лавровый лист",
-
-    "dill","ukrop","укроп","parsley","petrosel","петрушка","cilantro","kinza","кинза","vegetable oil","o‘simlik yog‘i","растительное масло",
-
-    "olive oil","zaytun yog‘i","оливковое масло","soy sauce","soya sousi","соевый соус","vinegar","sirko","уксус","tomato paste","tomat pastasi","томатная паста",
-
-    "apple","olma","яблоко","banana","banan","банан","grape","uzum","виноград","pomegranate","anor","гранат",
-
-    "melon","qovun","дыня","watermelon","tarvuz","арбуз","apricot","o‘rik","абрикос","plum","olcha","слива","lemon","limon","лимон",
-
-    "sugar","shakar","сахар","honey","asal","мёд","raisins","mayiz","изюм","dates","xurmo","финики","mayonnaise","mayonez","майонез","mint","yalpiz","мята",
-
-    "kefir","kefir","кефир","oats","yorma","овсянка","buckwheat","grechka","гречка","quinoa","кинуа","avocado","avokado","авокадо"
-
-  ];
-
-
-
-  // Price catalog (editable). unit: g/ml/item, price per unit in UZS (defaults—edit to match your local basket)
-
-  let priceCatalog = JSON.parse(localStorage.getItem("fl_prices") || "null") || {
-
-    "rice": {unit:"g", price:45},
-
-    "carrot": {unit:"g", price:8},
-
-    "onion": {unit:"g", price:7},
-
-    "lamb": {unit:"g", price:120},
-
-    "beef": {unit:"g", price:130},
-
-    "chicken": {unit:"g", price:75},
-
-    "garlic": {unit:"g", price:60},
-
-    "tomato": {unit:"g", price:16},
-
-    "bell pepper": {unit:"g", price:22},
-
-    "potato": {unit:"g", price:6},
-
-    "cabbage": {unit:"g", price:5},
-
-    "egg": {unit:"item", price:3500},
-
-    "milk": {unit:"ml", price:3.5},
-
-    "cheese": {unit:"g", price:140},
-
-    "butter": {unit:"g", price:170},
-
-    "yogurt": {unit:"ml", price:5},
-
-    "cream": {unit:"ml", price:8},
-
-    "flour": {unit:"g", price:5},
-
-    "bread": {unit:"item", price:5000},
-
-    "noodles": {unit:"g", price:25},
-
-    "pasta": {unit:"g", price:20},
-
-    "lentils": {unit:"g", price:25},
-
-    "beans": {unit:"g", price:18},
-
-    "chickpeas": {unit:"g", price:24},
-
-    "shrimp": {unit:"g", price:180},
-
-    "fish": {unit:"g", price:140},
-
-    "olive oil": {unit:"ml", price:15},
-
-    "vegetable oil": {unit:"ml", price:5},
-
-    "soy sauce": {unit:"ml", price:12},
-
-    "tomato paste": {unit:"g", price:25},
-
-    "lemon": {unit:"item", price:4000},
-
-    "lettuce": {unit:"g", price:30},
-
-    "mayonnaise": {unit:"g", price:20},
-
-    "bacon": {unit:"g", price:160},
-
-    "kefir": {unit:"ml", price:4},
-
-    "salt": {unit:"g", price:1.2},
-
-    "black pepper": {unit:"g", price:40},
-
-    "paprika": {unit:"g", price:18},
-
-    "cumin": {unit:"g", price:22},
-
-    "coriander": {unit:"g", price:16},
-
-    "bay leaf": {unit:"g", price:12},
-
-    "dill": {unit:"g", price:12},
-
-    "parsley": {unit:"g", price:12},
-
-    "cilantro": {unit:"g", price:12},
-
-    "oats": {unit:"g", price:30},
-
-    "buckwheat": {unit:"g", price:35},
-
-    "quinoa": {unit:"g", price:150},
-
-    "avocado": {unit:"item", price:18000}
-
-  };
-
-
-
-  // Toast
-
-  function showToast(msg){
-
-    toast.textContent = msg;
-
-    toast.style.display = "block";
-
-    setTimeout(()=> toast.style.display = "none", 2200);
-
-  }
-
-
-
-  // Aliases (EN/UZ/RU)
-
-  const aliases = {
-
-    "pomidor":"tomato","помидор":"tomato","piyoz":"onion","лук":"onion","sabzi":"carrot","морковь":"carrot","kartoshka":"potato","картофель":"potato",
-
-    "sarimsoq":"garlic","чеснок":"garlic","qalampir":"bell pepper","перец":"bell pepper","karam":"cabbage","капуста":"cabbage","bodring":"cucumber","огурец":"cucumber",
-
-    "ismaloq":"spinach","шпинат":"spinach","baqlajon":"eggplant","баклажан":"eggplant","qovoq":"pumpkin","тыква":"pumpkin","yashil piyoz":"green onion","зелёный лук":"green onion",
-
-    "qo‘y go‘shti":"lamb","баранина":"lamb","mol go‘shti":"beef","говядина":"beef","tovuq":"chicken","курица":"chicken","baliq":"fish","рыба":"fish","krevetka":"shrimp","креветка":"shrimp",
-
-    "tuxum":"egg","яйцо":"egg","sut":"milk","молоко":"milk","pishloq":"cheese","сыр":"cheese","saryog‘":"butter","сливочное масло":"butter","yogurt":"yogurt","йогурт":"yogurt",
-
-    "smetana":"cream","сливки":"cream","guruch":"rice","рис":"rice","un":"flour","мука":"flour","non":"bread","хлеб":"bread","lapsha":"noodles","лапша":"noodles",
-
-    "makaron":"pasta","паста":"pasta","loviya":"beans","фасоль":"beans","no‘xat":"chickpeas","нут":"chickpeas","goroh":"peas","горох":"peas",
-
-    "tuz":"salt","соль":"salt","qora murch":"black pepper","чёрный перец":"black pepper","zira":"cumin","кумин":"cumin","kashnich":"coriander","кориандр":"coriander",
-
-    "lavr":"bay leaf","лавровый лист":"bay leaf","ukrop":"dill","укроп":"dill","petrosel":"parsley","петрушка":"parsley","kinza":"cilantro","кинза":"cilantro",
-
-    "o‘simlik yog‘i":"vegetable oil","растительное масло":"vegetable oil","zaytun yog‘i":"olive oil","оливковое масло":"olive oil",
-
-    "soya sousi":"soy sauce","соевый соус":"soy sauce","sirko":"vinegar","уксус":"vinegar","tomat pastasi":"tomato paste","томатная паста":"tomato paste",
-
-    "olma":"apple","яблоко":"apple","banan":"banana","банан":"banana","uzum":"grape","виноград":"grape","anor":"pomegranate","гранат":"pomegranate",
-
-    "qovun":"melon","дыня":"melon","tarvuz":"watermelon","арбуз":"watermelon","o‘rik":"apricot","абрикос":"apricot","olcha":"plum","слива":"plum","limon":"lemon","лимон":"lemon",
-
-    "shakar":"sugar","сахар":"sugar","asal":"honey","мёд":"honey","mayiz":"raisins","изюм":"raisins","xurmo":"dates","финики":"dates","mayonez":"mayonnaise","майонез":"mayonnaise",
-
-    "yalpiz":"mint","мята":"mint","kefir":"kefir","кефир":"kefir","yorma":"oats","овсянка":"oats","grechka":"buckwheat","гречка":"buckwheat","avokado":"avocado","авокадо":"avocado"
-
-  };
-
-  function canonicalName(name){ const n = name.trim().toLowerCase(); return aliases[n] || n; }
-
-
-
-  // Parse input
-
-  function parsePantryInput(raw){
-
-    let s = raw.trim().toLowerCase();
-
-    if (!s) return null;
-
-    s = s.replace(/,/g," ");
-
-    const parts = s.split(/\s+/);
-
-    let qty = null, unit = "g";
-
-    for (let p of parts){
-
-      if (/^\d+(\.\d+)?(g|kg|ml|l|шт|ta|dona)?$/.test(p)){
-
-        let m = p.match(/^(\d+(?:\.\d+)?)(g|kg|ml|l|шт|ta|dona)?$/);
-
-        if (m){
-
-          qty = parseFloat(m[1]);
-
-          let u = m[2] || null;
-
-          if (u === "kg") { qty *= 1000; unit="g"; }
-
-          else if (u === "g") unit="g";
-
-          else if (u === "l") { qty *= 1000; unit="ml"; }
-
-          else if (u === "ml") unit="ml";
-
-          else if (u === "шт" || u==="ta" || u==="dona") unit="item";
-
-        }
-
+// Elements
+const ingredientInput = document.getElementById("ingredientInput");
+const addIngredientBtn = document.getElementById("addIngredient");
+const selectedChips = document.getElementById("selectedChips");
+const pantryCountEl = document.getElementById("pantryCount");
+const recipesGrid = document.getElementById("recipesGrid");
+const emptyState = document.getElementById("emptyState");
+const suggestionsContainer = document.getElementById("suggestions");
+const categoryFiltersEl = document.getElementById("categoryFilters");
+const dietFiltersEl = document.getElementById("dietFilters");
+const difficultyFilter = document.getElementById("difficultyFilter");
+const timeFilter = document.getElementById("timeFilter");
+const surpriseBtn = document.getElementById("surpriseBtn");
+const voiceBtn = document.getElementById("voiceBtn");
+const clearAllBtn = document.getElementById("clearAll");
+const openTipsBtn = document.getElementById("openTips");
+const langSelect = document.getElementById("langSelect");
+const servingsInput = document.getElementById("servingsInput");
+const importPantryBtn = document.getElementById("importPantry");
+const exportPantryBtn = document.getElementById("exportPantry");
+
+// Modals
+const tipsDialog = document.getElementById("tipsDialog");
+const recipeModal = document.getElementById("recipeModal");
+const cookDialog = document.getElementById("cookDialog");
+const pricesDialog = document.getElementById("pricesDialog");
+
+// Recipe modal elements
+const modalTitle = document.getElementById("modalTitle");
+const modalMeta = document.getElementById("modalMeta");
+const modalImg = document.getElementById("modalImg");
+const modalIngredients = document.getElementById("modalIngredients");
+const modalSpices = document.getElementById("modalSpices");
+const modalMissing = document.getElementById("modalMissing");
+const modalSteps = document.getElementById("modalSteps");
+const modalFav = document.getElementById("modalFav");
+const modalSave = document.getElementById("modalSave");
+const modalUnsave = document.getElementById("modalUnsave");
+const modalClose = document.getElementById("modalClose");
+const generateListBtn = document.getElementById("generateList");
+const cookNowBtn = document.getElementById("cookNow");
+const addToCartBtn = document.getElementById("addToCart");
+const matchBadge = document.getElementById("matchBadge");
+const priceBreakdown = document.getElementById("priceBreakdown");
+const totalUZS = document.getElementById("totalUZS");
+const totalUSD = document.getElementById("totalUSD");
+const servingsBadge = document.getElementById("servingsBadge");
+const modalCookMode = document.getElementById("modalCookMode");
+const cookContent = document.getElementById("cookContent");
+const cookClose = document.getElementById("cookClose");
+
+// Prices elements
+const pricesClose = document.getElementById("pricesClose");
+const pricesTable = document.getElementById("pricesTable").querySelector("tbody");
+const usdRateInput = document.getElementById("usdRateInput");
+const saveRatesBtn = document.getElementById("saveRates");
+const newItemName = document.getElementById("newItemName");
+const newItemUnit = document.getElementById("newItemUnit");
+const newItemPrice = document.getElementById("newItemPrice");
+const addPriceItemBtn = document.getElementById("addPriceItem");
+const openPricesBtn = document.getElementById("openPrices");
+
+// Cart elements
+const cartList = document.getElementById("cartList");
+const cartUZS = document.getElementById("cartUZS");
+const cartUSD = document.getElementById("cartUSD");
+const cartItemsLabel = document.getElementById("cartItemsLabel");
+const clearCartBtn = document.getElementById("clearCart");
+
+// Assistant elements
+const assistantMessages = document.getElementById("assistantMessages");
+const assistantInput = document.getElementById("assistantInput");
+const assistantSend = document.getElementById("assistantSend");
+
+// Saved collections
+const saveList = document.getElementById("saveList");
+
+// Toast
+const toast = document.getElementById("toast");
+
+// State
+let lang = localStorage.getItem("fl_lang") || "en";
+langSelect.value = lang;
+
+// Pantry: [{name, qty, unit}] unit: g/ml/item
+let pantry = JSON.parse(localStorage.getItem("fl_pantry") || "[]");
+
+// Favorites
+let favorites = JSON.parse(localStorage.getItem("fl_favs") || "[]");
+
+// Saved collections: [{recipeName, date}]
+let saved = JSON.parse(localStorage.getItem("fl_saved") || "[]");
+
+// Cart: [{name, qty, unit}]
+let cart = JSON.parse(localStorage.getItem("fl_cart") || "[]");
+
+// USD rate
+let usdRate = parseFloat(localStorage.getItem("fl_usdRate") || "12600");
+usdRateInput.value = usdRate;
+
+// Categories
+const categories = [
+  { id: "vegetables", name: {en:"Vegetables", uz:"Sabzavotlar", ru:"Овощи"} },
+  { id: "meat", name: {en:"Meat", uz:"Go‘sht", ru:"Мясо"} },
+  { id: "grains", name: {en:"Grains", uz:"Don", ru:"Зерновые"} },
+  { id: "dairy", name: {en:"Dairy", uz:"Sut mahsulotlari", ru:"Молочные"} },
+  { id: "spices", name: {en:"Spices", uz:"Ziravorlar", ru:"Специи"} },
+  { id: "fruits", name: {en:"Fruits", uz:"Mevalar", ru:"Фрукты"} },
+  { id: "other", name: {en:"Other", uz:"Boshqa", ru:"Другое"} }
+];
+let activeCategory = "";
+
+// Diet filters
+const diets = [
+  {id:"diabetic", name:{en:"Diabetic-friendly", uz:"Diabetiklar uchun", ru:"Для диабетиков"}},
+  {id:"healthy", name:{en:"Healthy", uz:"Sog‘lom", ru:"Здоровое питание"}},
+  {id:"vegetarian", name:{en:"Vegetarian", uz:"Vegetarian", ru:"Вегетарианское"}},
+  {id:"vegan", name:{en:"Vegan", uz:"Vegan", ru:"Веганское"}},
+  {id:"high_protein", name:{en:"High-protein", uz:"Ko‘p oqsilli", ru:"Белковое"}},
+  {id:"low_sodium", name:{en:"Low-sodium", uz:"Kam tuzli", ru:"Мало соли"}}
+];
+let activeDiets = new Set();
+
+// i18n dictionary
+const i18n = {
+  tagline: {en:"Type ingredients — get recipes", uz:"Mahsulotlarni yozing — retseptlar oling", ru:"Введите продукты — получите рецепты"},
+  persistNote: {en:"Saved pantry persists locally", uz:"Saqlangan ro‘yxat qurilmangizda saqlanadi", ru:"Список хранится локально"},
+  pantryTitle: {en:"Pantry", uz:"Ombor", ru:"Запасы"},
+  pantryCount: (n)=>({en:`${n} items`, uz:`${n} mahsulot`, ru:`${n} поз.`}),
+  tipsTitle: {en:"Quick tips", uz:"Tezkor maslahatlar", ru:"Советы"},
+  tip1:{en:'Type ingredient with amount (“tomato 300g”)', uz:'Mahsulotni miqdori bilan yozing (“pomidor 300g”)', ru:'Введите продукт с количеством (“помидор 300г”)'},
+  tip2:{en:"Press Enter or click Add. Voice supports EN/UZ/RU.", uz:"Enter bosing yoki Qo‘shish. Ovozi EN/UZ/RU.", ru:"Нажмите Enter или Добавить. Голос EN/UZ/RU."},
+  tip3:{en:"View grams, spices, and basket in UZS/USD.", uz:"Gramlar, ziravorlar va savat UZS/USD.", ru:"Граммы, специи и смета в UZS/USD."},
+  tip4:{en:"Edit the Price Catalog for local accuracy.", uz:"Narxlar katalogini tahrirlab aniqlik kiriting.", ru:"Редактируйте каталог цен для точности."},
+  tip5:{en:"Cook Mode + Save/Unsave collections.", uz:"Pishirish rejimi + Saqlash/O‘chirish.", ru:"Режим готовки + Сохранить/Удалить."},
+  emptyState:{en:"No matches yet. Add ingredients or relax filters.", uz:"Mos kelmadi. Mahsulot qo‘shing yoki filtrni yumshating.", ru:"Нет совпадений. Добавьте продукты или ослабьте фильтры."},
+  footerNote:{en:"Made with love for food lovers", uz:"Taom ixlosmandlari uchun sevgi bilan", ru:"Сделано с любовью для гурманов"},
+  ingTitle:{en:"Ingredients", uz:"Ingrediyentlar", ru:"Ингредиенты"},
+  spiceTitle:{en:"Spices", uz:"Ziravorlar", ru:"Специи"},
+  missingLabel:{en:"Missing:", uz:"Yetishmaydi:", ru:"Отсутствует:"},
+  stepsTitle:{en:"Steps", uz:"Bosqichlar", ru:"Шаги"},
+  priceTitle:{en:"Estimated basket", uz:"Taxminiy savat", ru:"Смета"},
+  servingsBadge:(n)=>({en:`for ${n} servings`, uz:`${n} porsiya uchun`, ru:`на ${n} порций`}),
+  cartTitle:{en:"Cart", uz:"Savat", ru:"Корзина"},
+  cartItems:(n)=>({en:`${n} items`, uz:`${n} mahsulot`, ru:`${n} поз.`}),
+  addToCart:{en:"Add missing to cart", uz:"Yetishmayotganlarni savatga qo‘shish", ru:"Добавить отсутствующее в корзину"},
+  cookMode:{en:"Cook mode", uz:"Pishirish rejimi", ru:"Режим готовки"},
+  markCooked:{en:"Mark cooked", uz:"Pishdi deb belgilash", ru:"Отметить приготовленным"},
+  close:{en:"Close", uz:"Yopish", ru:"Закрыть"},
+  assistantTitle:{en:"AI assistant", uz:"AI yordamchi", ru:"AI помощник"},
+  saveTitle:{en:"Saved", uz:"Saqlangan", ru:"Сохранено"},
+  saveButton:{en:"Save", uz:"Saqlash", ru:"Сохранить"},
+  unsaveButton:{en:"Unsave", uz:"O‘chirish", ru:"Удалить"}
+};
+
+// Ingredient suggestions (EN/UZ/RU + extras)
+const ingredientSuggestions = [
+  "tomato","pomidor","помидор","onion","piyoz","лук","carrot","sabzi","морковь","potato","kartoshka","картофель",
+  "garlic","sarimsoq","чеснок","bell pepper","qalampir","перец","cabbage","karam","капуста","cucumber","bodring","огурец",
+  "spinach","ismaloq","шпинат","eggplant","baqlajon","баклажан","pumpkin","qovoq","тыква","green onion","yashil piyoz","зелёный лук",
+  "lamb","qo‘y go‘shti","баранина","beef","mol go‘shti","говядина","chicken","tovuq","курица","fish","baliq","рыба","shrimp","krevetka","креветка",
+  "egg","tuxum","яйцо","milk","sut","молоко","cheese","pishloq","сыр","butter","saryog‘","сливочное масло","yogurt","йогурт","cream","smetana","сливки",
+  "rice","guruch","рис","flour","un","мука","bread","non","хлеб","noodles","lapsha","лапша","pasta","makaron","паста",
+  "lentils","mas","чечевица","beans","loviya","фасоль","chickpeas","no‘xat","нут","peas","горох",
+  "salt","tuz","соль","black pepper","qora murch","чёрный перец","paprika","паприка","cumin","zira","кумин","coriander","kashnich","кориандр","bay leaf","lavr","лавровый лист",
+  "dill","ukrop","укроп","parsley","petrosel","петрушка","cilantro","kinza","кинза","vegetable oil","o‘simlik yog‘i","растительное масло",
+  "olive oil","zaytun yog‘i","оливковое масло","soy sauce","soya sousi","соевый соус","vinegar","sirko","уксус","tomato paste","tomat pastasi","томатная паста",
+  "apple","olma","яблоко","banana","banan","банан","grape","uzum","виноград","pomegranate","anor","гранат",
+  "melon","qovun","дыня","watermelon","tarvuz","арбуз","apricot","o‘rik","абрикос","plum","olcha","слива","lemon","limon","лимон",
+  "sugar","shakar","сахар","honey","asal","мёд","raisins","mayiz","изюм","dates","xurmo","финики","mayonnaise","mayonez","майонез","mint","yalpiz","мята",
+  "kefir","kefir","кефир","oats","yorma","овсянка","buckwheat","grechka","гречка","quinoa","кинуа","avocado","avokado","авокадо"
+];
+
+// Price catalog (editable). unit: g/ml/item
+let priceCatalog = JSON.parse(localStorage.getItem("fl_prices") || "null") || {
+  "rice": {unit:"g", price:45},
+  "carrot": {unit:"g", price:8},
+  "onion": {unit:"g", price:7},
+  "lamb": {unit:"g", price:120},
+  "beef": {unit:"g", price:130},
+  "chicken": {unit:"g", price:75},
+  "garlic": {unit:"g", price:60},
+  "tomato": {unit:"g", price:16},
+  "bell pepper": {unit:"g", price:22},
+  "potato": {unit:"g", price:6},
+  "cabbage": {unit:"g", price:5},
+  "egg": {unit:"item", price:3500},
+  "milk": {unit:"ml", price:3.5},
+  "cheese": {unit:"g", price:140},
+  "butter": {unit:"g", price:170},
+  "yogurt": {unit:"ml", price:5},
+  "cream": {unit:"ml", price:8},
+  "flour": {unit:"g", price:5},
+  "bread": {unit:"item", price:5000},
+  "noodles": {unit:"g", price:25},
+  "pasta": {unit:"g", price:20},
+  "lentils": {unit:"g", price:25},
+  "beans": {unit:"g", price:18},
+  "chickpeas": {unit:"g", price:24},
+  "shrimp": {unit:"g", price:180},
+  "fish": {unit:"g", price:140},
+  "olive oil": {unit:"ml", price:15},
+  "vegetable oil": {unit:"ml", price:5},
+  "soy sauce": {unit:"ml", price:12},
+  "tomato paste": {unit:"g", price:25},
+  "lemon": {unit:"item", price:4000},
+  "lettuce": {unit:"g", price:30},
+  "mayonnaise": {unit:"g", price:20},
+  "bacon": {unit:"g", price:160},
+  "kefir": {unit:"ml", price:4},
+  "salt": {unit:"g", price:1.2},
+  "black pepper": {unit:"g", price:40},
+  "paprika": {unit:"g", price:18},
+  "cumin": {unit:"g", price:22},
+  "coriander": {unit:"g", price:16},
+  "bay leaf": {unit:"g", price:12},
+  "dill": {unit:"g", price:12},
+  "parsley": {unit:"g", price:12},
+  "cilantro": {unit:"g", price:12},
+  "oats": {unit:"g", price:30},
+  "buckwheat": {unit:"g", price:35},
+  "quinoa": {unit:"g", price:150},
+  "avocado": {unit:"item", price:18000}
+};
+
+// Toast
+function showToast(msg){
+  toast.textContent = msg;
+  toast.style.display = "block";
+  setTimeout(()=> toast.style.display = "none", 2200);
+}
+
+// Aliases
+const aliases = {
+  "pomidor":"tomato","помидор":"tomato","piyoz":"onion","лук":"onion","sabzi":"carrot","морковь":"carrot","kartoshka":"potato","картофель":"potato",
+  "sarimsoq":"garlic","чеснок":"garlic","qalampir":"bell pepper","перец":"bell pepper","karam":"cabbage","капуста":"cabbage","bodring":"cucumber","огурец":"cucumber",
+  "ismaloq":"spinach","шпинат":"spinach","baqlajon":"eggplant","баклажан":"eggplant","qovoq":"pumpkin","тыква":"pumpkin","yashil piyoz":"green onion","зелёный лук":"green onion",
+  "qo‘y go‘shti":"lamb","баранина":"lamb","mol go‘shti":"beef","говядина":"beef","tovuq":"chicken","курица":"chicken","baliq":"fish","рыба":"fish","krevetka":"shrimp","креветка":"shrimp",
+  "tuxum":"egg","яйцо":"egg","sut":"milk","молоко":"milk","pishloq":"cheese","сыр":"cheese","saryog‘":"butter","сливочное масло":"butter","yogurt":"yogurt","йогурт":"yogurt",
+  "smetana":"cream","сливки":"cream","guruch":"rice","рис":"rice","un":"flour","мука":"flour","non":"bread","хлеб":"bread","lapsha":"noodles","лапша":"noodles",
+  "makaron":"pasta","паста":"pasta","loviya":"beans","фасоль":"beans","no‘xat":"chickpeas","нут":"chickpeas","goroh":"peas","горох":"peas",
+  "tuz":"salt","соль":"salt","qora murch":"black pepper","чёрный перец":"black pepper","zira":"cumin","кумин":"cumin","kashnich":"coriander","кориандр":"coriander",
+  "lavr":"bay leaf","лавровый лист":"bay leaf","ukrop":"dill","укроп":"dill","petrosel":"parsley","петрушка":"parsley","kinza":"cilantro","кинза":"cilantro",
+  "o‘simlik yog‘i":"vegetable oil","растительное масло":"vegetable oil","zaytun yog‘i":"olive oil","оливковое масло":"olive oil",
+  "soya sousi":"soy sauce","соевый соус":"soy sauce","sirko":"vinegar","уксус":"vinegar","tomat pastasi":"tomato paste","томатная паста":"tomato paste",
+  "olma":"apple","яблоко":"apple","banan":"banana","банан":"banana","uzum":"grape","виноград":"grape","anor":"pomegranate","гранат":"pomegranate",
+  "qovun":"melon","дыня":"melon","tarvuz":"watermelon","арбуз":"watermelon","o‘rik":"apricot","абрикос":"apricot","olcha":"plum","слива":"plum","limon":"lemon","лимон":"lemon",
+  "shakar":"sugar","сахар":"sugar","asal":"honey","мёд":"honey","mayiz":"raisins","изюм":"raisins","xurmo":"dates","финики":"dates","mayonez":"mayonnaise","майонез":"mayonnaise",
+  "yalpiz":"mint","мята":"mint","kefir":"kefir","кефир":"kefir","yorma":"oats","овсянка":"oats","grechka":"buckwheat","гречка":"buckwheat","avokado":"avocado","авокадо":"avocado"
+};
+function canonicalName(name){ const n = name.trim().toLowerCase(); return aliases[n] || n; }
+
+// Parse input
+function parsePantryInput(raw){
+  let s = raw.trim().toLowerCase();
+  if (!s) return null;
+  s = s.replace(/,/g," ");
+  const parts = s.split(/\s+/);
+  let qty = null, unit = "g";
+
+  for (let p of parts){
+    if (/^\d+(\.\d+)?(g|kg|ml|l|шт|ta|dona)?$/.test(p)){
+      let m = p.match(/^(\d+(?:\.\d+)?)(g|kg|ml|l|шт|ta|dona)?$/);
+      if (m){
+        qty = parseFloat(m[1]);
+        let u = m[2] || null;
+        if (u === "kg") { qty *= 1000; unit="g"; }
+        else if (u === "g") unit="g";
+        else if (u === "l") { qty *= 1000; unit="ml"; }
+        else if (u === "ml") unit="ml";
+        else if (u === "шт" || u==="ta" || u==="dona") unit="item";
       }
-
     }
+  }
 
-    if (qty === null){
-
-      const numIdx = parts.findIndex(x=>/^\d+(\.\d+)?$/.test(x));
-
-      if (numIdx>=0){
-
-        qty = parseFloat(parts[numIdx]);
-
-        let unitTok = parts[numIdx+1] || "";
-
-        if (unitTok==="kg") { qty *= 1000; unit="g"; }
-
-        else if (unitTok==="g") unit="g";
-
-        else if (unitTok==="l") { qty *= 1000; unit="ml"; }
-
-        else if (unitTok==="ml") unit="ml";
-
-        else if (/^(шт|ta|dona)$/.test(unitTok)) unit="item";
-
-        else unit="g";
-
-      }
-
+  if (qty === null){
+    const numIdx = parts.findIndex(x=>/^\d+(\.\d+)?$/.test(x));
+    if (numIdx>=0){
+      qty = parseFloat(parts[numIdx]);
+      let unitTok = parts[numIdx+1] || "";
+      if (unitTok==="kg") { qty *= 1000; unit="g"; }
+      else if (unitTok==="g") unit="g";
+      else if (unitTok==="l") { qty *= 1000; unit="ml"; }
+      else if (unitTok==="ml") unit="ml";
+      else if (/^(шт|ta|dona)$/.test(unitTok)) unit="item";
+      else unit="g";
     }
-
-    const nameTokens = parts.filter(x=>!/^\d+(\.\d+)?(g|kg|ml|l|шт|ta|dona)?$/.test(x));
-
-    let name = canonicalName(nameTokens.join(" ").trim());
-
-    if (!name) return null;
-
-    if (qty === null){
-
-      if ((priceCatalog[name]?.unit || "g") === "item") { qty = 1; unit = "item"; }
-
-      else qty = 200;
-
-    }
-
-    if (priceCatalog[name]){
-
-      unit = priceCatalog[name].unit;
-
-    }
-
-    return {name, qty, unit};
-
   }
 
+  const nameTokens = parts.filter(x=>!/^\d+(\.\d+)?(g|kg|ml|l|шт|ta|dona)?$/.test(x));
+  let name = canonicalName(nameTokens.join(" ").trim());
+  if (!name) return null;
 
-
-  function ingredientCategoryOf(name){
-
-    const n = canonicalName(name);
-
-    if (/(tomato|onion|carrot|potato|cabbage|cucumber|spinach|eggplant|radish|beetroot|turnip|green onion|pumpkin|lettuce)/.test(n)) return "vegetables";
-
-    if (/(chicken|beef|lamb|mutton|goat|fish|shrimp|bacon|sausage)/.test(n)) return "meat";
-
-    if (/(rice|wheat|barley|millet|flour|bread|noodles|pasta|semolina|lentils|beans|chickpeas|peas|oats|buckwheat|quinoa)/.test(n)) return "grains";
-
-    if (/(milk|cheese|butter|yogurt|cream|kefir|sour cream)/.test(n)) return "dairy";
-
-    if (/(salt|cumin|paprika|pepper|oregano|garlic|ginger|coriander|bay leaf|dill|parsley|cilantro)/.test(n)) return "spices";
-
-    if (/(apple|banana|grape|pomegranate|melon|apricot|plum|cherry|lemon|watermelon|avocado)/.test(n)) return "fruits";
-
-    return "other";
-
+  if (qty === null){
+    if ((priceCatalog[name]?.unit || "g") === "item") { qty = 1; unit = "item"; }
+    else qty = 200;
   }
-
-
-
-  // Diet rules
-
-  function dietTagsForRecipe(r){
-
-    const names = r.ingredients.map(i=>canonicalName(i.name));
-
-    const spices = (r.spices||[]).map(s=>canonicalName(s.name));
-
-    const diabeticOK = !names.some(n=>/(sugar|honey|mayonnaise|white bread)/.test(n)) && !spices.some(n=>/(sugar)/.test(n));
-
-    const vegetarian = !names.some(n=>/(beef|lamb|chicken|fish|shrimp|bacon)/.test(n));
-
-    const vegan = vegetarian && !names.some(n=>/(egg|milk|cheese|butter|yogurt|cream)/.test(n));
-
-    const highProtein = names.some(n=>/(beef|lamb|chicken|fish|shrimp|lentils|beans|chickpeas|egg)/.test(n));
-
-    const lowSodium = !(spices.some(n=>n==="salt")) && !(names.some(n=>n==="soy sauce"));
-
-    const healthy = diabeticOK && !names.some(n=>/(bacon|butter|mayonnaise)/.test(n));
-
-    const tags = new Set();
-
-    if (diabeticOK) tags.add("diabetic");
-
-    if (healthy) tags.add("healthy");
-
-    if (vegetarian) tags.add("vegetarian");
-
-    if (vegan) tags.add("vegan");
-
-    if (highProtein) tags.add("high_protein");
-
-    if (lowSodium) tags.add("low_sodium");
-
-    return tags;
-
+  if (priceCatalog[name]){
+    unit = priceCatalog[name].unit;
   }
-
-
-
-  // Recipes (expanded)
-
-  const recipes = [
-
-    // Uzbek classics
-
-    { name:"Plov (Pilaf)", cuisine:"Uzbek", difficulty:"medium", time:60, servingsBase:4,
-
-      ingredients:[{name:"rice",qty:600,unit:"g"},{name:"carrot",qty:400,unit:"g"},{name:"onion",qty:200,unit:"g"},{name:"lamb",qty:600,unit:"g"},{name:"garlic",qty:30,unit:"g"}],
-
-      spices:[{name:"salt",qty:12,unit:"g"},{name:"black pepper",qty:4,unit:"g"},{name:"cumin",qty:6,unit:"g"}],
-
-      steps:["Rinse and soak rice for 20 minutes.","Brown lamb with onions, add carrots.","Add water, spices, and rice; simmer until tender.","Rest 10 minutes before serving."],
-
-      subs:[{need:"lamb",suggest:"beef"}]
-
-    },
-
-    { name:"Shashlik", cuisine:"Uzbek", difficulty:"medium", time:40, servingsBase:4,
-
-      ingredients:[{name:"lamb",qty:800,unit:"g"},{name:"onion",qty:300,unit:"g"}],
-
-      spices:[{name:"salt",qty:10,unit:"g"},{name:"black pepper",qty:5,unit:"g"}],
-
-      steps:["Slice lamb, marinate with onion and spices for 1 hour.","Skewer and grill over high heat until charred."]
-
-    },
-
-    { name:"Lagman", cuisine:"Central Asian", difficulty:"medium", time:45, servingsBase:4,
-
-      ingredients:[{name:"noodles",qty:400,unit:"g"},{name:"beef",qty:500,unit:"g"},{name:"tomato",qty:300,unit:"g"},{name:"bell pepper",qty:200,unit:"g"},{name:"onion",qty:200,unit:"g"}],
-
-      spices:[{name:"salt",qty:12,unit:"g"},{name:"black pepper",qty:4,unit:"g"},{name:"paprika",qty:6,unit:"g"}],
-
-      steps:["Sear beef, add onions and peppers.","Add tomatoes and spices, simmer.","Boil noodles; serve with sauce."]
-
-    },
-
-    { name:"Samsa", cuisine:"Uzbek", difficulty:"medium", time:70, servingsBase:4,
-
-      ingredients:[{name:"flour",qty:500,unit:"g"},{name:"butter",qty:150,unit:"g"},{name:"beef",qty:500,unit:"g"},{name:"onion",qty:300,unit:"g"}],
-
-      spices:[{name:"salt",qty:10,unit:"g"},{name:"black pepper",qty:5,unit:"g"},{name:"cumin",qty:4,unit:"g"}],
-
-      steps:["Make dough; rest 30 minutes.","Fill with beef and onions; season.","Bake at 200°C until golden."]
-
-    },
-
-    { name:"Mastava", cuisine:"Uzbek", difficulty:"easy", time:50, servingsBase:4,
-
-      ingredients:[{name:"rice",qty:200,unit:"g"},{name:"carrot",qty:300,unit:"g"},{name:"potato",qty:300,unit:"g"},{name:"onion",qty:200,unit:"g"},{name:"tomato",qty:300,unit:"g"}],
-
-      spices:[{name:"salt",qty:10,unit:"g"},{name:"black pepper",qty:3,unit:"g"},{name:"cumin",qty:4,unit:"g"}],
-
-      steps:["Sauté onion and carrot.","Add potato, tomato, rice and water; simmer.","Season and serve."]
-
-    },
-
-    { name:"Chuchvara (Dumplings)", cuisine:"Uzbek", difficulty:"hard", time:90, servingsBase:4,
-
-      ingredients:[{name:"flour",qty:600,unit:"g"},{name:"egg",qty:2,unit:"item"},{name:"beef",qty:500,unit:"g"},{name:"onion",qty:200,unit:"g"}],
-
-      spices:[{name:"salt",qty:12,unit:"g"},{name:"black pepper",qty:4,unit:"g"}],
-
-      steps:["Make dough with flour and eggs.","Fill with beef and onion; shape dumplings.","Boil and serve with broth."]
-
-    },
-
-
-
-    // International + healthy sets
-
-    { name:"Tomato Rice", cuisine:"International", difficulty:"easy", time:25, servingsBase:4,
-
-      ingredients:[{name:"rice",qty:400,unit:"g"},{name:"tomato",qty:400,unit:"g"}],
-
-      spices:[{name:"salt",qty:8,unit:"g"},{name:"paprika",qty:4,unit:"g"}],
-
-      steps:["Cook rice.","Make quick tomato sauce; combine and season."]
-
-    },
-
-    { name:"Chicken Curry", cuisine:"Asian", difficulty:"medium", time:40, servingsBase:4,
-
-      ingredients:[{name:"chicken",qty:600,unit:"g"},{name:"onion",qty:300,unit:"g"},{name:"tomato",qty:300,unit:"g"},{name:"garlic",qty:20,unit:"g"},{name:"cream",qty:200,unit:"ml"}],
-
-      spices:[{name:"salt",qty:10,unit:"g"},{name:"black pepper",qty:4,unit:"g"},{name:"cumin",qty:5,unit:"g"},{name:"paprika",qty:5,unit:"g"}],
-
-      steps:["Sauté onions, garlic, and spices.","Add chicken and tomatoes; simmer.","Finish with cream."]
-
-    },
-
-    { name:"Cheese Omelette", cuisine:"International", difficulty:"easy", time:10, servingsBase:2,
-
-      ingredients:[{name:"egg",qty:4,unit:"item"},{name:"milk",qty:60,unit:"ml"},{name:"cheese",qty:60,unit:"g"}],
-
-      spices:[{name:"salt",qty:4,unit:"g"},{name:"black pepper",qty:2,unit:"g"}],
-
-      steps:["Beat eggs with milk.","Cook gently; add cheese; fold."]
-
-    },
-
-    { name:"Vegetable Stir Fry", cuisine:"Asian", difficulty:"easy", time:15, servingsBase:4,
-
-      ingredients:[{name:"carrot",qty:300,unit:"g"},{name:"bell pepper",qty:300,unit:"g"},{name:"spinach",qty:200,unit:"g"},{name:"garlic",qty:15,unit:"g"},{name:"vegetable oil",qty:30,unit:"ml"}],
-
-      spices:[{name:"salt",qty:8,unit:"g"},{name:"black pepper",qty:3,unit:"g"},{name:"soy sauce",qty:30,unit:"ml"}],
-
-      steps:["Heat oil; quick stir-fry veggies.","Season with soy, salt, pepper."]
-
-    },
-
-    { name:"Beef Stew", cuisine:"International", difficulty:"medium", time:90, servingsBase:4,
-
-      ingredients:[{name:"beef",qty:700,unit:"g"},{name:"carrot",qty:300,unit:"g"},{name:"potato",qty:500,unit:"g"},{name:"onion",qty:200,unit:"g"}],
-
-      spices:[{name:"salt",qty:12,unit:"g"},{name:"black pepper",qty:5,unit:"g"},{name:"bay leaf",qty:2,unit:"g"}],
-
-      steps:["Brown beef; add vegetables and water.","Simmer until tender."]
-
-    },
-
-    { name:"Pasta Alfredo", cuisine:"Italian", difficulty:"easy", time:20, servingsBase:4,
-
-      ingredients:[{name:"pasta",qty:360,unit:"g"},{name:"cheese",qty:120,unit:"g"},{name:"milk",qty:200,unit:"ml"},{name:"butter",qty:60,unit:"g"},{name:"garlic",qty:12,unit:"g"}],
-
-      spices:[{name:"salt",qty:8,unit:"g"},{name:"black pepper",qty:3,unit:"g"}],
-
-      steps:["Cook pasta.","Make creamy sauce; combine."]
-
-    },
-
-    { name:"Garlic Butter Fish", cuisine:"International", difficulty:"easy", time:20, servingsBase:4,
-
-      ingredients:[{name:"fish",qty:600,unit:"g"},{name:"garlic",qty:12,unit:"g"},{name:"butter",qty:60,unit:"g"},{name:"lemon",qty:1,unit:"item"}],
-
-      spices:[{name:"salt",qty:8,unit:"g"},{name:"black pepper",qty:3,unit:"g"}],
-
-      steps:["Pan-fry fish with garlic butter.","Finish with lemon."]
-
-    },
-
-    { name:"Chicken Fried Rice", cuisine:"Asian", difficulty:"easy", time:20, servingsBase:4,
-
-      ingredients:[{name:"chicken",qty:400,unit:"g"},{name:"rice",qty:360,unit:"g"},{name:"egg",qty:3,unit:"item"},{name:"onion",qty:150,unit:"g"},{name:"soy sauce",qty:30,unit:"ml"}],
-
-      spices:[{name:"salt",qty:6,unit:"g"},{name:"black pepper",qty:3,unit:"g"}],
-
-      steps:["Fry rice with chicken, onion and eggs.","Season with soy sauce."]
-
-    },
-
-    { name:"Lentil Soup", cuisine:"International", difficulty:"easy", time:45, servingsBase:4,
-
-      ingredients:[{name:"lentils",qty:400,unit:"g"},{name:"carrot",qty:200,unit:"g"},{name:"onion",qty:200,unit:"g"},{name:"garlic",qty:12,unit:"g"}],
-
-      spices:[{name:"salt",qty:10,unit:"g"},{name:"black pepper",qty:3,unit:"g"},{name:"cumin",qty:5,unit:"g"}],
-
-      steps:["Simmer lentils with aromatics until soft."]
-
-    },
-
-    { name:"Cheese Pizza", cuisine:"Italian", difficulty:"medium", time:50, servingsBase:4,
-
-      ingredients:[{name:"flour",qty:500,unit:"g"},{name:"cheese",qty:200,unit:"g"},{name:"tomato",qty:300,unit:"g"},{name:"olive oil",qty:30,unit:"ml"}],
-
-      spices:[{name:"salt",qty:10,unit:"g"},{name:"black pepper",qty:3,unit:"g"},{name:"paprika",qty:4,unit:"g"}],
-
-      steps:["Make dough; rest.","Top and bake."]
-
-    },
-
-    // Healthy/diabetic-friendly ideas
-
-    { name:"Buckwheat with Chicken & Veg", cuisine:"International", difficulty:"easy", time:30, servingsBase:4,
-
-      ingredients:[{name:"buckwheat",qty:320,unit:"g"},{name:"chicken",qty:500,unit:"g"},{name:"onion",qty:150,unit:"g"},{name:"carrot",qty:200,unit:"g"}],
-
-      spices:[{name:"salt",qty:6,unit:"g"},{name:"black pepper",qty:3,unit:"g"}],
-
-      steps:["Cook buckwheat.","Sauté chicken and veg; mix and season."]
-
-    },
-
-    { name:"Oats Breakfast Bowl", cuisine:"International", difficulty:"easy", time:10, servingsBase:2,
-
-      ingredients:[{name:"oats",qty:120,unit:"g"},{name:"milk",qty:250,unit:"ml"},{name:"banana",qty:1,unit:"item"}],
-
-      spices:[{name:"cinnamon",qty:3,unit:"g"}],
-
-      steps:["Cook oats with milk.","Top with banana and a pinch of cinnamon."]
-
-    },
-
-    { name:"Quinoa Veg Salad", cuisine:"International", difficulty:"easy", time:20, servingsBase:4,
-
-      ingredients:[{name:"quinoa",qty:300,unit:"g"},{name:"cucumber",qty:200,unit:"g"},{name:"tomato",qty:250,unit:"g"},{name:"olive oil",qty:30,unit:"ml"}],
-
-      spices:[{name:"salt",qty:6,unit:"g"},{name:"black pepper",qty:3,unit:"g"}],
-
-      steps:["Cook quinoa.","Toss with chopped veg and dressing."]
-
-    },
-
-    { name:"Avocado Chicken Salad", cuisine:"International", difficulty:"easy", time:15, servingsBase:4,
-
-      ingredients:[{name:"chicken",qty:500,unit:"g"},{name:"avocado",qty:2,unit:"item"},{name:"lettuce",qty:200,unit:"g"},{name:"lemon",qty:1,unit:"item"}],
-
-      spices:[{name:"salt",qty:5,unit:"g"},{name:"black pepper",qty:3,unit:"g"}],
-
-      steps:["Cook chicken; slice.","Mix with lettuce, avocado; dress with lemon."]
-
-    }
-
-  ];
-
-
-
-  // Build filters
-
-  function renderCategoryButtons(){
-
-    categoryFiltersEl.innerHTML = "";
-
-    categories.forEach(c=>{
-
-      const btn = document.createElement("button");
-
-      btn.className = "filter-btn";
-
-      btn.textContent = c.name[lang];
-
-      btn.dataset.id = c.id;
-
-      btn.addEventListener("click", ()=>{
-
-        activeCategory = activeCategory === c.id ? "" : c.id;
-
-        document.querySelectorAll("#categoryFilters .filter-btn").forEach(b=>b.classList.remove("active"));
-
-        if (activeCategory) btn.classList.add("active");
-
-        updateRecipes();
-
-      });
-
-      categoryFiltersEl.appendChild(btn);
-
+  return {name, qty, unit};
+}
+
+function ingredientCategoryOf(name){
+  const n = canonicalName(name);
+  if (/(tomato|onion|carrot|potato|cabbage|cucumber|spinach|eggplant|radish|beetroot|turnip|green onion|pumpkin|lettuce)/.test(n)) return "vegetables";
+  if (/(chicken|beef|lamb|mutton|goat|fish|shrimp|bacon|sausage)/.test(n)) return "meat";
+  if (/(rice|wheat|barley|millet|flour|bread|noodles|pasta|semolina|lentils|beans|chickpeas|peas|oats|buckwheat|quinoa)/.test(n)) return "grains";
+  if (/(milk|cheese|butter|yogurt|cream|kefir|sour cream)/.test(n)) return "dairy";
+  if (/(salt|cumin|paprika|pepper|oregano|garlic|ginger|coriander|bay leaf|dill|parsley|cilantro)/.test(n)) return "spices";
+  if (/(apple|banana|grape|pomegranate|melon|apricot|plum|cherry|lemon|watermelon|avocado)/.test(n)) return "fruits";
+  return "other";
+}
+
+// Diet rules
+function dietTagsForRecipe(r){
+  const names = r.ingredients.map(i=>canonicalName(i.name));
+  const spices = (r.spices||[]).map(s=>canonicalName(s.name));
+  const diabeticOK = !names.some(n=>/(sugar|honey|mayonnaise|white bread)/.test(n)) && !spices.some(n=>/(sugar)/.test(n));
+  const vegetarian = !names.some(n=>/(beef|lamb|chicken|fish|shrimp|bacon)/.test(n));
+  const vegan = vegetarian && !names.some(n=>/(egg|milk|cheese|butter|yogurt|cream)/.test(n));
+  const highProtein = names.some(n=>/(beef|lamb|chicken|fish|shrimp|lentils|beans|chickpeas|egg)/.test(n));
+  const lowSodium = !(spices.some(n=>n==="salt")) && !(names.some(n=>n==="soy sauce"));
+  const healthy = diabeticOK && !names.some(n=>/(bacon|butter|mayonnaise)/.test(n));
+  const tags = new Set();
+  if (diabeticOK) tags.add("diabetic");
+  if (healthy) tags.add("healthy");
+  if (vegetarian) tags.add("vegetarian");
+  if (vegan) tags.add("vegan");
+  if (highProtein) tags.add("high_protein");
+  if (lowSodium) tags.add("low_sodium");
+  return tags;
+}
+
+// Recipes (expanded) — теперь с полем img
+const recipes = [
+  // Uzbek classics
+  { name:"Plov (Pilaf)", cuisine:"Uzbek", difficulty:"medium", time:60, servingsBase:4,
+    ingredients:[{name:"rice",qty:600,unit:"g"},{name:"carrot",qty:400,unit:"g"},{name:"onion",qty:200,unit:"g"},{name:"lamb",qty:600,unit:"g"},{name:"garlic",qty:30,unit:"g"}],
+    spices:[{name:"salt",qty:12,unit:"g"},{name:"black pepper",qty:4,unit:"g"},{name:"cumin",qty:6,unit:"g"}],
+    steps:["Rinse and soak rice for 20 minutes.","Brown lamb with onions, add carrots.","Add water, spices, and rice; simmer until tender.","Rest 10 minutes before serving."],
+    subs:[{need:"lamb",suggest:"beef"}],
+    img:"images/images/plov.png"
+  },
+  { name:"Shashlik", cuisine:"Uzbek", difficulty:"medium", time:40, servingsBase:4,
+    ingredients:[{name:"lamb",qty:800,unit:"g"},{name:"onion",qty:300,unit:"g"}],
+    spices:[{name:"salt",qty:10,unit:"g"},{name:"black pepper",qty:5,unit:"g"}],
+    steps:["Slice lamb, marinate with onion and spices for 1 hour.","Skewer and grill over high heat until charred."],
+      img:"images/images/11.png"
+  },
+  { name:"Lagman", cuisine:"Central Asian", difficulty:"medium", time:45, servingsBase:4,
+    ingredients:[{name:"noodles",qty:400,unit:"g"},{name:"beef",qty:500,unit:"g"},{name:"tomato",qty:300,unit:"g"},{name:"bell pepper",qty:200,unit:"g"},{name:"onion",qty:200,unit:"g"}],
+    spices:[{name:"salt",qty:12,unit:"g"},{name:"black pepper",qty:4,unit:"g"},{name:"paprika",qty:6,unit:"g"}],
+    steps:["Sear beef, add onions and peppers.","Add tomatoes and spices, simmer.","Boil noodles; serve with sauce."],
+      img:"images/images/lagman.png"
+  },
+  { name:"Samsa", cuisine:"Uzbek", difficulty:"medium", time:70, servingsBase:4,
+    ingredients:[{name:"flour",qty:500,unit:"g"},{name:"butter",qty:150,unit:"g"},{name:"beef",qty:500,unit:"g"},{name:"onion",qty:300,unit:"g"}],
+    spices:[{name:"salt",qty:10,unit:"g"},{name:"black pepper",qty:5,unit:"g"},{name:"cumin",qty:4,unit:"g"}],
+    steps:["Make dough; rest 30 minutes.","Fill with beef and onions; season.","Bake at 200°C until golden."],
+      img:"images/images/samsa.png"
+  },
+  { name:"Mastava", cuisine:"Uzbek", difficulty:"easy", time:50, servingsBase:4,
+    ingredients:[{name:"rice",qty:200,unit:"g"},{name:"carrot",qty:300,unit:"g"},{name:"potato",qty:300,unit:"g"},{name:"onion",qty:200,unit:"g"},{name:"tomato",qty:300,unit:"g"}],
+    spices:[{name:"salt",qty:10,unit:"g"},{name:"black pepper",qty:3,unit:"g"},{name:"cumin",qty:4,unit:"g"}],
+    steps:["Sauté onion and carrot.","Add potato, tomato, rice and water; simmer.","Season and serve."],
+      img:"images/images/mastava.png"
+  },
+  { name:"Chuchvara (Dumplings)", cuisine:"Uzbek", difficulty:"hard", time:90, servingsBase:4,
+    ingredients:[{name:"flour",qty:600,unit:"g"},{name:"egg",qty:2,unit:"item"},{name:"beef",qty:500,unit:"g"},{name:"onion",qty:200,unit:"g"}],
+    spices:[{name:"salt",qty:12,unit:"g"},{name:"black pepper",qty:4,unit:"g"}],
+    steps:["Make dough with flour and eggs.","Fill with beef and onion; shape dumplings.","Boil and serve with broth."],
+      img:"images/images/dumplings.png"
+  },
+
+  // International + healthy sets
+  { name:"Tomato Rice", cuisine:"International", difficulty:"easy", time:25, servingsBase:4,
+    ingredients:[{name:"rice",qty:400,unit:"g"},{name:"tomato",qty:400,unit:"g"}],
+    spices:[{name:"salt",qty:8,unit:"g"},{name:"paprika",qty:4,unit:"g"}],
+    steps:["Cook rice.","Make quick tomato sauce; combine and season."],
+      img:"images/images/9.png"
+  },
+  { name:"Chicken Curry", cuisine:"Asian", difficulty:"medium", time:40, servingsBase:4,
+    ingredients:[{name:"chicken",qty:600,unit:"g"},{name:"onion",qty:300,unit:"g"},{name:"tomato",qty:300,unit:"g"},{name:"garlic",qty:20,unit:"g"},{name:"cream",qty:200,unit:"ml"}],
+    spices:[{name:"salt",qty:10,unit:"g"},{name:"black pepper",qty:4,unit:"g"},{name:"cumin",qty:5,unit:"g"},{name:"paprika",qty:5,unit:"g"}],
+    steps:["Sauté onions, garlic, and spices.","Add chicken and tomatoes; simmer.","Finish with cream."],
+      img:"images/images/12.png"
+  },
+  { name:"Cheese Omelette", cuisine:"International", difficulty:"easy", time:10, servingsBase:2,
+    ingredients:[{name:"egg",qty:4,unit:"item"},{name:"milk",qty:60,unit:"ml"},{name:"cheese",qty:60,unit:"g"}],
+    spices:[{name:"salt",qty:4,unit:"g"},{name:"black pepper",qty:2,unit:"g"}],
+    steps:["Beat eggs with milk.","Cook gently; add cheese; fold."],
+      img:"images/images/1.png"
+  },
+  { name:"Vegetable Stir Fry", cuisine:"Asian", difficulty:"easy", time:15, servingsBase:4,
+    ingredients:[{name:"carrot",qty:300,unit:"g"},{name:"bell pepper",qty:300,unit:"g"},{name:"spinach",qty:200,unit:"g"},{name:"garlic",qty:15,unit:"g"},{name:"vegetable oil",qty:30,unit:"ml"}],
+    spices:[{name:"salt",qty:8,unit:"g"},{name:"black pepper",qty:3,unit:"g"},{name:"soy sauce",qty:30,unit:"ml"}],
+    steps:["Heat oil; quick stir-fry veggies.","Season with soy, salt, pepper."],
+      img:"images/images/3.png"
+  },
+  { name:"Beef Stew", cuisine:"International", difficulty:"medium", time:90, servingsBase:4,
+    ingredients:[{name:"beef",qty:700,unit:"g"},{name:"carrot",qty:300,unit:"g"},{name:"potato",qty:500,unit:"g"},{name:"onion",qty:200,unit:"g"}],
+    spices:[{name:"salt",qty:12,unit:"g"},{name:"black pepper",qty:5,unit:"g"},{name:"bay leaf",qty:2,unit:"g"}],
+    steps:["Brown beef; add vegetables and water.","Simmer until tender."],
+      img:"images/images/beef stew.png"
+  },
+  { name:"Pasta Alfredo", cuisine:"Italian", difficulty:"easy", time:20, servingsBase:4,
+    ingredients:[{name:"pasta",qty:360,unit:"g"},{name:"cheese",qty:120,unit:"g"},{name:"milk",qty:200,unit:"ml"},{name:"butter",qty:60,unit:"g"},{name:"garlic",qty:12,unit:"g"}],
+    spices:[{name:"salt",qty:8,unit:"g"},{name:"black pepper",qty:3,unit:"g"}],
+    steps:["Cook pasta.","Make creamy sauce; combine."],
+      img:"images/images/5.png"
+  },
+  { name:"Garlic Butter Fish", cuisine:"International", difficulty:"easy", time:20, servingsBase:4,
+    ingredients:[{name:"fish",qty:600,unit:"g"},{name:"garlic",qty:12,unit:"g"},{name:"butter",qty:60,unit:"g"},{name:"lemon",qty:1,unit:"item"}],
+    spices:[{name:"salt",qty:8,unit:"g"},{name:"black pepper",qty:3,unit:"g"}],
+    steps:["Pan-fry fish with garlic butter.","Finish with lemon."],
+      img:"images/images/6.png"
+  },
+  { name:"Chicken Fried Rice", cuisine:"Asian", difficulty:"easy", time:20, servingsBase:4,
+    ingredients:[{name:"chicken",qty:400,unit:"g"},{name:"rice",qty:360,unit:"g"},{name:"egg",qty:3,unit:"item"},{name:"onion",qty:150,unit:"g"},{name:"soy sauce",qty:30,unit:"ml"}],
+    spices:[{name:"salt",qty:6,unit:"g"},{name:"black pepper",qty:3,unit:"g"}],
+    steps:["Fry rice with chicken, onion and eggs.","Season with soy sauce."],
+      img:"images/images/7.png"
+  },
+  { name:"Lentil Soup", cuisine:"International", difficulty:"easy", time:45, servingsBase:4,
+    ingredients:[{name:"lentils",qty:400,unit:"g"},{name:"carrot",qty:200,unit:"g"},{name:"onion",qty:200,unit:"g"},{name:"garlic",qty:12,unit:"g"}],
+    spices:[{name:"salt",qty:10,unit:"g"},{name:"black pepper",qty:3,unit:"g"},{name:"cumin",qty:5,unit:"g"}],
+    steps:["Simmer lentils with aromatics until soft."],
+      img:"images/images/lentilsoup.png"
+  },
+  { name:"Cheese Pizza", cuisine:"Italian", difficulty:"medium", time:50, servingsBase:4,
+    ingredients:[{name:"flour",qty:500,unit:"g"},{name:"cheese",qty:200,unit:"g"},{name:"tomato",qty:300,unit:"g"},{name:"olive oil",qty:30,unit:"ml"}],
+    spices:[{name:"salt",qty:10,unit:"g"},{name:"black pepper",qty:3,unit:"g"},{name:"paprika",qty:4,unit:"g"}],
+    steps:["Make dough; rest.","Top and bake."],
+      img:"images/images/cheesepizza.png"
+  },
+
+  // Healthy/diabetic-friendly ideas
+  { name:"Buckwheat with Chicken & Veg", cuisine:"International", difficulty:"easy", time:30, servingsBase:4,
+    ingredients:[{name:"buckwheat",qty:320,unit:"g"},{name:"chicken",qty:500,unit:"g"},{name:"onion",qty:150,unit:"g"},{name:"carrot",qty:200,unit:"g"}],
+    spices:[{name:"salt",qty:6,unit:"g"},{name:"black pepper",qty:3,unit:"g"}],
+    steps:["Cook buckwheat.","Sauté chicken and veg; mix and season."],
+      img:"images/images/10.png"
+  },
+  { name:"Oats Breakfast Bowl", cuisine:"International", difficulty:"easy", time:10, servingsBase:2,
+    ingredients:[{name:"oats",qty:120,unit:"g"},{name:"milk",qty:250,unit:"ml"},{name:"banana",qty:1,unit:"item"}],
+    spices:[{name:"cinnamon",qty:3,unit:"g"}],
+    steps:["Cook oats with milk.","Top with banana and a pinch of cinnamon."],
+      img:"images/images/img_1.png"
+  },
+  { name:"Quinoa Veg Salad", cuisine:"International", difficulty:"easy", time:20, servingsBase:4,
+    ingredients:[{name:"quinoa",qty:300,unit:"g"},{name:"cucumber",qty:200,unit:"g"},{name:"tomato",qty:250,unit:"g"},{name:"olive oil",qty:30,unit:"ml"}],
+    spices:[{name:"salt",qty:6,unit:"g"},{name:"black pepper",qty:3,unit:"g"}],
+    steps:["Cook quinoa.","Toss with chopped veg and dressing."],
+      img:"images/images/8.png"
+  },
+  { name:"Avocado Chicken Salad", cuisine:"International", difficulty:"easy", time:15, servingsBase:4,
+    ingredients:[{name:"chicken",qty:500,unit:"g"},{name:"avocado",qty:2,unit:"item"},{name:"lettuce",qty:200,unit:"g"},{name:"lemon",qty:1,unit:"item"}],
+    spices:[{name:"salt",qty:5,unit:"g"},{name:"black pepper",qty:3,unit:"g"}],
+    steps:["Cook chicken; slice.","Mix with lettuce, avocado; dress with lemon."],
+      img:"images/images/4.png"
+  }
+];
+
+// Build filters
+function renderCategoryButtons(){
+  categoryFiltersEl.innerHTML = "";
+  categories.forEach(c=>{
+    const btn = document.createElement("button");
+    btn.className = "filter-btn";
+    btn.textContent = c.name[lang];
+    btn.dataset.id = c.id;
+    btn.addEventListener("click", ()=>{
+      activeCategory = activeCategory === c.id ? "" : c.id;
+      document.querySelectorAll("#categoryFilters .filter-btn").forEach(b=>b.classList.remove("active"));
+      if (activeCategory) btn.classList.add("active");
+      updateRecipes();
     });
-
-  }
-
-  function renderDietButtons(){
-
-    dietFiltersEl.innerHTML = "";
-
-    diets.forEach(d=>{
-
-      const btn = document.createElement("button");
-
-      btn.className = "filter-btn";
-
-      btn.textContent = d.name[lang];
-
-      btn.dataset.id = d.id;
-
-      btn.addEventListener("click", ()=>{
-
-        if (activeDiets.has(d.id)) activeDiets.delete(d.id);
-
-        else activeDiets.add(d.id);
-
-        btn.classList.toggle("active");
-
-        updateRecipes();
-
-      });
-
-      dietFiltersEl.appendChild(btn);
-
-    });
-
-  }
-
-
-
-  // Suggestions
-
-  function updateSuggestions(){
-
-    const q = ingredientInput.value.trim().toLowerCase();
-
-    suggestionsContainer.innerHTML = "";
-
-    if (!q) return;
-
-    const filtered = ingredientSuggestions.filter(i=>i.includes(q)).slice(0,10);
-
-    filtered.forEach(i=>{
-
-      const d = document.createElement("button");
-
-      d.className = "filter-btn"; d.textContent = i;
-
-      d.addEventListener("click", ()=>{
-
-        ingredientInput.value = i;
-
-        addPantryItemFromInput();
-
-        suggestionsContainer.innerHTML = "";
-
-      });
-
-      suggestionsContainer.appendChild(d);
-
-    });
-
-  }
-
-
-
-  // Pantry rendering
-
-  function renderPantry(){
-
-    selectedChips.innerHTML = "";
-
-    pantry.forEach(item=>{
-
-      const el = document.createElement("div");
-
-      el.className = "chip";
-
-      el.style.display = "inline-flex";
-
-      el.style.alignItems = "center";
-
-      el.style.gap = "8px";
-
-      el.style.background = "#fff2cc";
-
-      el.style.padding = "8px 12px";
-
-      el.style.borderRadius = "20px";
-
-      el.style.border = "1px solid #f3d78a";
-
-      const name = document.createElement("span"); name.textContent = item.name;
-
-      const qty = document.createElement("span"); qty.className = "muted"; qty.textContent = `${item.qty}${item.unit}`;
-
-      const remove = document.createElement("span"); remove.textContent = "×"; remove.title = "Remove"; remove.style.cursor = "pointer";
-
-      remove.addEventListener("click", ()=>{
-
-        pantry = pantry.filter(p=>!(p.name===item.name && p.unit===item.unit));
-
-        savePantry(); renderPantry(); updateRecipes();
-
-      });
-
-      el.appendChild(name); el.appendChild(qty); el.appendChild(remove);
-
-      selectedChips.appendChild(el);
-
-    });
-
-    pantryCountEl.textContent = i18n.pantryCount(pantry.length)[lang];
-
-  }
-
-  function savePantry(){ localStorage.setItem("fl_pantry", JSON.stringify(pantry)); }
-
-  function addPantryItemFromInput(){
-
-    const parsed = parsePantryInput(ingredientInput.value);
-
-    ingredientInput.value = "";
-
-    if (!parsed){ showToast("Could not parse. Try: 'rice 500g'"); return; }
-
-    const existing = pantry.find(p=>p.name===parsed.name && p.unit===parsed.unit);
-
-    if (existing){ existing.qty += parsed.qty; }
-
-    else pantry.push(parsed);
-
-    savePantry(); renderPantry(); updateRecipes();
-
-  }
-
-
-
-  // Favorites
-
-  function toggleFavorite(recipeName){
-
-    if (favorites.includes(recipeName)) favorites = favorites.filter(f=>f!==recipeName);
-
-    else favorites.push(recipeName);
-
-    localStorage.setItem("fl_favs", JSON.stringify(favorites));
-
-    updateRecipes();
-
-  }
-
-
-
-  // Saved collections
-
-  function saveRecipe(recipe){
-
-    if (saved.find(s=>s.recipeName===recipe.name)) { showToast("Already saved"); return; }
-
-    const entry = {recipeName:recipe.name, date:new Date().toISOString()};
-
-    saved.unshift(entry);
-
-    localStorage.setItem("fl_saved", JSON.stringify(saved));
-
-    renderSaved();
-
-    showToast("Recipe saved");
-
-  }
-
-  function unsaveRecipe(recipe){
-
-    saved = saved.filter(s=>s.recipeName!==recipe.name);
-
-    localStorage.setItem("fl_saved", JSON.stringify(saved));
-
-    renderSaved();
-
-    showToast("Recipe unsaved");
-
-  }
-
-  function renderSaved(){
-
-    saveList.innerHTML = "";
-
-    saved.slice(0,20).forEach(s=>{
-
-      const row = document.createElement("div");
-
-      row.className = "save-item";
-
-      const name = document.createElement("span"); name.textContent = s.recipeName;
-
-      const del = document.createElement("button"); del.className="ghost"; del.textContent="×";
-
-      del.addEventListener("click", ()=>{
-
-        saved = saved.filter(x=>x.recipeName!==s.recipeName);
-
-        localStorage.setItem("fl_saved", JSON.stringify(saved));
-
-        renderSaved();
-
-      });
-
-      row.appendChild(name); row.appendChild(del);
-
-      saveList.appendChild(row);
-
-    });
-
-  }
-
-
-
-  // Scale quantities
-
-  function scaleQty(baseQty, baseServings, newServings){ return Math.round(baseQty * (newServings / baseServings)); }
-
-
-
-  // Price helpers
-
-  function priceOf(name, qty, unit){
-
-    const entry = priceCatalog[canonicalName(name)];
-
-    if (!entry) return 0;
-
-    let q = qty;
-
-    if (entry.unit !== unit){
-
-      if (entry.unit==="g" && unit==="kg") q = qty*1000;
-
-      else if (entry.unit==="ml" && unit==="l") q = qty*1000;
-
-      else if (entry.unit==="item" && unit!=="item"){
-
-        if (canonicalName(name)==="egg" && unit==="g") q = Math.round(qty/50);
-
-      }
-
-    }
-
-    return q * entry.price;
-
-  }
-
-
-
-  // Compute recipe scaled/missing
-
-  function computeRecipe(r){
-
-    const servings = parseInt(servingsInput.value,10) || r.servingsBase || 4;
-
-    const ingScaled = r.ingredients.map(i=>({name:i.name, qty:scaleQty(i.qty, r.servingsBase || 4, servings), unit:i.unit}));
-
-    const spicesScaled = (r.spices||[]).map(s=>({name:s.name, qty:scaleQty(s.qty, r.servingsBase || 4, servings), unit:s.unit}));
-
-    let haveCount = 0, totalCount = ingScaled.length;
-
-    let missingItems = [];
-
-    ingScaled.forEach(req=>{
-
-      const p = pantry.find(x=>x.name===req.name && x.unit===req.unit);
-
-      if (p && p.qty >= req.qty){ haveCount++; }
-
-      else {
-
-        const missingQty = req.qty - (p ? p.qty : 0);
-
-        missingItems.push({name:req.name, qty:missingQty>0?missingQty:req.qty, unit:req.unit});
-
-      }
-
-    });
-
-    const dietTags = Array.from(dietTagsForRecipe(r));
-
-    return Object.assign({}, r, { ingScaled, spicesScaled, haveCount, totalCount, missingItems, dietTags });
-
-  }
-
-
-
-  // Render recipes
-
-  function updateRecipes(){
-
-    recipesGrid.innerHTML = "";
-
-    const diff = difficultyFilter.value;
-
-    const tmax = timeFilter.value ? parseInt(timeFilter.value,10) : null;
-
-
-
-    let mapped = recipes.map(r=>computeRecipe(r));
-
-
-
-    mapped = mapped.filter(r=>{
-
-      if (diff && r.difficulty !== diff) return false;
-
-      if (tmax && r.time > tmax) return false;
-
-      if (activeCategory){
-
-        const belongs = r.ingScaled.some(i=>ingredientCategoryOf(i.name) === activeCategory);
-
-        if (!belongs) return false;
-
-      }
-
-      if (activeDiets.size){
-
-        for (let d of activeDiets){
-
-          if (!r.dietTags.includes(d)) return false;
-
-        }
-
-      }
-
-      return true;
-
-    });
-
-
-
-    mapped.sort((a,b)=>{
-
-      const am = a.haveCount / a.totalCount;
-
-      const bm = b.haveCount / b.totalCount;
-
-      if (bm !== am) return bm - am;
-
-      return a.time - b.time;
-
-    });
-
-
-
-    if (!mapped.length){
-
-      emptyState.textContent = i18n.emptyState[lang];
-
-      emptyState.style.display = "block";
-
-      return;
-
-    } else emptyState.style.display = "none";
-
-
-
-    mapped.forEach(r=>{
-
-      const card = document.createElement("div"); card.className = "card";
-
-      const header = document.createElement("div"); header.className = "card-head";
-
-      const title = document.createElement("strong"); title.textContent = r.name;
-
-      const headerRight = document.createElement("div"); headerRight.className="inline";
-
-      const time = document.createElement("span"); time.className = "muted"; time.textContent = `${r.time}m`;
-
-      const favBtn = document.createElement("button"); favBtn.className = "ghost"; favBtn.title = "Favorite"; favBtn.textContent = favorites.includes(r.name) ? "★" : "☆";
-
-      favBtn.addEventListener("click",(e)=>{ e.stopPropagation(); toggleFavorite(r.name); });
-
-      headerRight.appendChild(time); headerRight.appendChild(favBtn);
-
-      header.appendChild(title); header.appendChild(headerRight);
-
-      const img = document.createElement("div"); img.className = "card-img";
-
-      img.innerHTML = `<div style="text-align:center"><div style="font-size:38px;font-weight:700">${initials(r.name)}</div><div class="muted">${r.cuisine}</div></div>`;
-
-      const meta = document.createElement("div"); meta.className = "card-meta";
-
-      const cuisine = document.createElement("span"); cuisine.className = "badge"; cuisine.textContent = r.cuisine;
-
-      const diffBadge = document.createElement("span"); diffBadge.className = "badge"; diffBadge.textContent = r.difficulty;
-
-      const matchPercent = Math.round((r.haveCount / r.totalCount) * 100);
-
-      const matchEl = document.createElement("span"); matchEl.className = "badge green"; matchEl.textContent = `${matchPercent}% match`;
-
-      const dietBadge = document.createElement("span"); dietBadge.className = "badge gray"; dietBadge.textContent = r.dietTags.join(", ");
-
-      meta.appendChild(cuisine); meta.appendChild(diffBadge); meta.appendChild(matchEl); meta.appendChild(dietBadge);
-
-      const actions = document.createElement("div"); actions.className = "inline"; actions.style.justifyContent="space-between";
-
-      const missingCount = document.createElement("span"); missingCount.className = "muted"; missingCount.textContent = `Missing: ${r.missingItems.length}`;
-
-      const viewBtn = document.createElement("button"); viewBtn.className = "ghost"; viewBtn.textContent = "View";
-
-      viewBtn.addEventListener("click", ()=> openRecipeModal(r));
-
-      actions.appendChild(missingCount); actions.appendChild(viewBtn);
-
-      card.appendChild(header); card.appendChild(img); card.appendChild(meta); card.appendChild(actions);
-
-      card.addEventListener("click", ()=> openRecipeModal(r));
-
-      recipesGrid.appendChild(card);
-
-    });
-
-  }
-
-
-
-  function initials(name){ return name.split(" ").slice(0,2).map(w=>w[0]).join("").toUpperCase(); }
-
-
-
-  let currentRecipe = null;
-
-
-
-  function openRecipeModal(r){
-
-    currentRecipe = r;
-
-    const missing = r.missingItems;
-
-    const matchPercent = Math.round((r.haveCount / r.totalCount) * 100);
-
-    const servings = parseInt(servingsInput.value,10) || r.servingsBase || 4;
-
-    modalTitle.textContent = r.name;
-
-    modalMeta.textContent = `${r.cuisine} • ${r.difficulty} • ${r.time} min`;
-
-    modalImg.src = "";
-
-    modalIngredients.innerHTML = "";
-
-    r.ingScaled.forEach(i=>{
-
-      const row = document.createElement("div"); row.className="quant";
-
-      const left = document.createElement("span"); left.className="qty"; left.textContent = `${i.name}`;
-
-      const right = document.createElement("span"); right.className="need"; right.textContent = `${i.qty}${i.unit}`;
-
-      row.appendChild(left); row.appendChild(right); modalIngredients.appendChild(row);
-
-    });
-
-    modalSpices.innerHTML = "";
-
-    r.spicesScaled.forEach(s=>{
-
-      const row = document.createElement("div"); row.className="quant";
-
-      const left = document.createElement("span"); left.className="qty"; left.textContent = `${s.name}`;
-
-      const right = document.createElement("span"); right.className="need"; right.textContent = `${s.qty}${s.unit}`;
-
-      row.appendChild(left); row.appendChild(right); modalSpices.appendChild(row);
-
-    });
-
-    modalMissing.textContent = missing.length ? missing.map(m=>`${m.name} ${m.qty}${m.unit}`).join(", ") : "None";
-
-    matchBadge.textContent = `${matchPercent}% match`;
-
-    servingsBadge.textContent = i18n.servingsBadge(servings)[lang];
-
-    // price breakdown
-
-    priceBreakdown.innerHTML = "";
-
-    let sumUZS = 0;
-
-    missing.forEach(m=>{
-
-      const cost = priceOf(m.name, m.qty, m.unit);
-
-      sumUZS += cost;
-
-      const row = document.createElement("div"); row.className="inline"; row.style.justifyContent="space-between";
-
-      const left = document.createElement("span"); left.textContent = `${m.name} ${m.qty}${m.unit}`;
-
-      const right = document.createElement("span"); right.textContent = `UZS ${Math.round(cost).toLocaleString()}`;
-
-      row.appendChild(left); row.appendChild(right); priceBreakdown.appendChild(row);
-
-    });
-
-    totalUZS.textContent = `UZS ${Math.round(sumUZS).toLocaleString()}`;
-
-    totalUSD.textContent = `$${(sumUZS / usdRate).toFixed(2)}`;
-
-    modalFav.textContent = favorites.includes(r.name) ? "★" : "☆";
-
-    modalSave.textContent = i18n.saveButton[lang];
-
-    modalUnsave.textContent = i18n.unsaveButton[lang];
-
-    recipeModal.showModal();
-
-  }
-
-
-
-  modalFav.addEventListener("click", ()=>{ if (!currentRecipe) return; toggleFavorite(currentRecipe.name); modalFav.textContent = favorites.includes(currentRecipe.name) ? "★" : "☆"; });
-
-  modalSave.addEventListener("click", ()=>{ if (!currentRecipe) return; saveRecipe(currentRecipe); });
-
-  modalUnsave.addEventListener("click", ()=>{ if (!currentRecipe) return; unsaveRecipe(currentRecipe); });
-
-  modalClose.addEventListener("click", ()=> recipeModal.close());
-
-  addToCartBtn.addEventListener("click", ()=> {
-
-    if (!currentRecipe) return;
-
-    currentRecipe.missingItems.forEach(m=>{
-
-      const existing = cart.find(c=>c.name===m.name && c.unit===m.unit);
-
-      if (existing) existing.qty += m.qty; else cart.push({name:m.name, qty:m.qty, unit:m.unit});
-
-    });
-
-    saveCart(); renderCart(); showToast("Added missing items to cart");
-
+    categoryFiltersEl.appendChild(btn);
   });
-
-  generateListBtn.addEventListener("click", ()=> {
-
-    if (!currentRecipe) return;
-
-    const missing = currentRecipe.missingItems || [];
-
-    const list = missing.length ? missing.map(x => "- " + x.name + " " + x.qty + x.unit).join("\n") : "- All set!";
-
-    alert("Shopping list:\n\n" + list);
-
-  });
-
-  cookNowBtn.addEventListener("click", ()=> { if (!currentRecipe) return; alert("Marked as cooked: " + currentRecipe.name); recipeModal.close(); });
-
-
-
-  // Cook Mode
-
-  modalCookMode.addEventListener("click", ()=>{
-
-    if (!currentRecipe) return;
-
-    cookContent.innerHTML = "";
-
-    currentRecipe.steps.forEach((st, idx)=>{
-
-      const row = document.createElement("div"); row.className="inline"; row.style.justifyContent="space-between";
-
-      const left = document.createElement("div"); left.textContent = `${idx+1}. ${st}`;
-
-      const tools = document.createElement("div"); tools.className="inline";
-
-      const check = document.createElement("button"); check.className="ghost"; check.textContent = "✓";
-
-      check.addEventListener("click", ()=> { left.style.textDecoration="line-through"; showToast("Step completed"); });
-
-      const timer = document.createElement("button"); timer.className="ghost"; timer.textContent = "⏱ 5m";
-
-      timer.addEventListener("click", ()=>{
-
-        let t=300; timer.disabled=true;
-
-        const iv = setInterval(()=>{ t--; timer.textContent = `⏱ ${Math.floor(t/60)}m ${t%60}s`; if (t<=0){ clearInterval(iv); timer.textContent = "⏱ done"; timer.disabled=false; showToast("Timer done"); } },1000);
-
-      });
-
-      tools.appendChild(check); tools.appendChild(timer);
-
-      row.appendChild(left); row.appendChild(tools);
-
-      cookContent.appendChild(row);
-
+}
+function renderDietButtons(){
+  dietFiltersEl.innerHTML = "";
+  diets.forEach(d=>{
+    const btn = document.createElement("button");
+    btn.className = "filter-btn";
+    btn.textContent = d.name[lang];
+    btn.dataset.id = d.id;
+    btn.addEventListener("click", ()=>{
+      if (activeDiets.has(d.id)) activeDiets.delete(d.id);
+      else activeDiets.add(d.id);
+      btn.classList.toggle("active");
+      updateRecipes();
     });
-
-    cookDialog.showModal();
-
+    dietFiltersEl.appendChild(btn);
   });
+}
 
-  cookClose.addEventListener("click", ()=> cookDialog.close());
-
-
-
-  // Prices UI
-
-  function renderPrices(){
-
-    pricesTable.innerHTML = "";
-
-    Object.entries(priceCatalog).forEach(([name,entry])=>{
-
-      const tr = document.createElement("tr");
-
-      const tdName = document.createElement("td"); tdName.textContent = name;
-
-      const tdUnit = document.createElement("td"); tdUnit.textContent = entry.unit;
-
-      const tdPrice = document.createElement("td");
-
-      const input = document.createElement("input");
-
-      input.type="number"; input.step="0.01"; input.value=entry.price; input.style.width="120px";
-
-      input.addEventListener("change", ()=>{
-
-        entry.price = parseFloat(input.value||"0");
-
-        savePrices(); renderCart(); if (currentRecipe) openRecipeModal(currentRecipe);
-
-      });
-
-      tdPrice.appendChild(input);
-
-      const tdDel = document.createElement("td");
-
-      const delBtn = document.createElement("button"); delBtn.className="ghost"; delBtn.textContent="Delete";
-
-      delBtn.addEventListener("click", ()=>{
-
-        delete priceCatalog[name]; savePrices(); renderPrices(); renderCart();
-
-      });
-
-      tdDel.appendChild(delBtn);
-
-      tr.appendChild(tdName); tr.appendChild(tdUnit); tr.appendChild(tdPrice); tr.appendChild(tdDel);
-
-      pricesTable.appendChild(tr);
-
+// Suggestions
+function updateSuggestions(){
+  const q = ingredientInput.value.trim().toLowerCase();
+  suggestionsContainer.innerHTML = "";
+  if (!q) return;
+  const filtered = ingredientSuggestions.filter(i=>i.includes(q)).slice(0,10);
+  filtered.forEach(i=>{
+    const d = document.createElement("button");
+    d.className = "filter-btn"; d.textContent = i;
+    d.addEventListener("click", ()=>{
+      ingredientInput.value = i;
+      addPantryItemFromInput();
+      suggestionsContainer.innerHTML = "";
     });
-
-  }
-
-  function savePrices(){ localStorage.setItem("fl_prices", JSON.stringify(priceCatalog)); }
-
-  addPriceItemBtn.addEventListener("click", ()=>{
-
-    const name = canonicalName(newItemName.value || ""); const unit = newItemUnit.value; const price = parseFloat(newItemPrice.value||"0");
-
-    if (!name || !price){ showToast("Name and price required"); return; }
-
-    priceCatalog[name] = {unit, price};
-
-    newItemName.value=""; newItemPrice.value="";
-
-    savePrices(); renderPrices();
-
+    suggestionsContainer.appendChild(d);
   });
+}
 
-  openPricesBtn.addEventListener("click", ()=> { renderPrices(); pricesDialog.showModal(); });
-
-  pricesClose.addEventListener("click", ()=> pricesDialog.close());
-
-  saveRatesBtn.addEventListener("click", ()=>{
-
-    usdRate = parseFloat(usdRateInput.value||"12600");
-
-    localStorage.setItem("fl_usdRate", usdRate);
-
-    renderCart(); if (currentRecipe) openRecipeModal(currentRecipe);
-
-    showToast("Rates saved");
-
-  });
-
-
-
-  // Cart
-
-  function saveCart(){ localStorage.setItem("fl_cart", JSON.stringify(cart)); }
-
-  function renderCart(){
-
-    cartList.innerHTML = "";
-
-    let sumUZS = 0;
-
-    cart.forEach(item=>{
-
-      const cost = priceOf(item.name, item.qty, item.unit); sumUZS += cost;
-
-      const row = document.createElement("div"); row.className="cart-item";
-
-      const left = document.createElement("span"); left.textContent = `${item.name} ${item.qty}${item.unit}`;
-
-      const right = document.createElement("div"); right.className="inline";
-
-      const priceEl = document.createElement("span"); priceEl.className="muted"; priceEl.textContent = `UZS ${Math.round(cost).toLocaleString()}`;
-
-      const delBtn = document.createElement("button"); delBtn.className="ghost"; delBtn.textContent = "×";
-
-      delBtn.addEventListener("click", ()=>{ cart = cart.filter(c=>!(c.name===item.name && c.unit===item.unit)); saveCart(); renderCart(); });
-
-      right.appendChild(priceEl); right.appendChild(delBtn);
-
-      row.appendChild(left); row.appendChild(right); cartList.appendChild(row);
-
+// Pantry rendering
+function renderPantry(){
+  selectedChips.innerHTML = "";
+  pantry.forEach(item=>{
+    const el = document.createElement("div");
+    el.className = "chip";
+    el.style.display = "inline-flex";
+    el.style.alignItems = "center";
+    el.style.gap = "8px";
+    el.style.background = "#fff2cc";
+    el.style.padding = "8px 12px";
+    el.style.borderRadius = "20px";
+    el.style.border = "1px solid #f3d78a";
+    const name = document.createElement("span"); name.textContent = item.name;
+    const qty = document.createElement("span"); qty.className = "muted"; qty.textContent = `${item.qty}${item.unit}`;
+    const remove = document.createElement("span"); remove.textContent = "×"; remove.title = "Remove"; remove.style.cursor = "pointer";
+    remove.addEventListener("click", ()=>{
+      pantry = pantry.filter(p=>!(p.name===item.name && p.unit===item.unit));
+      savePantry(); renderPantry(); updateRecipes();
     });
-
-    cartUZS.textContent = `UZS ${Math.round(sumUZS).toLocaleString()}`;
-
-    cartUSD.textContent = `$${(sumUZS / usdRate).toFixed(2)}`;
-
-    cartItemsLabel.textContent = i18n.cartItems(cart.length)[lang];
-
-  }
-
-  clearCartBtn.addEventListener("click", ()=>{ cart=[]; saveCart(); renderCart(); });
-
-
-
-  // CSV pantry import/export
-
-  exportPantryBtn.addEventListener("click", ()=>{
-
-    const rows = pantry.map(p=>`${p.name},${p.qty},${p.unit}`);
-
-    const csv = ["name,qty,unit", ...rows].join("\n");
-
-    const blob = new Blob([csv], {type:"text/csv"}); const url = URL.createObjectURL(blob);
-
-    const a = document.createElement("a"); a.href=url; a.download="pantry.csv"; a.click(); setTimeout(()=>URL.revokeObjectURL(url),1000);
-
+    el.appendChild(name); el.appendChild(qty); el.appendChild(remove);
+    selectedChips.appendChild(el);
   });
-
-  importPantryBtn.addEventListener("click", ()=>{
-
-    const inp = document.createElement("input"); inp.type="file"; inp.accept=".csv,text/csv";
-
-    inp.onchange = (e)=>{
-
-      const file = e.target.files[0]; if (!file) return;
-
-      const reader = new FileReader();
-
-      reader.onload = ()=>{
-
-        const text = reader.result; const lines = text.trim().split(/\r?\n/).slice(1);
-
-        lines.forEach(line=>{
-
-          const [name,qty,unit] = line.split(",");
-
-          const cn = canonicalName(name); const q = parseFloat(qty||"0"); const u = unit||"g";
-
-          if (cn && q){ const existing = pantry.find(p=>p.name===cn && p.unit===u);
-
-            if (existing) existing.qty += q; else pantry.push({name:cn, qty:q, unit:u});
-
-          }
-
-        });
-
-        savePantry(); renderPantry(); updateRecipes(); showToast("Pantry imported");
-
-      };
-
-      reader.readAsText(file);
-
-    };
-
-    inp.click();
-
-  });
-
-
-
-  // Voice input
-
-  let recog = null;
-
-  if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window){
-
-    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-    recog = new SR(); recog.continuous = false; recog.interimResults = false;
-
-    updateRecogLang();
-
-    voiceBtn.addEventListener("click", ()=> { try { recog.start(); } catch(e){} });
-
-    recog.onresult = function(e){
-
-      const txt = e.results[0][0].transcript;
-
-      txt.split(/[,\n]+/).forEach(w => { ingredientInput.value = w.trim(); addPantryItemFromInput(); });
-
-    };
-
-  } else voiceBtn.style.display = "none";
-
-  function updateRecogLang(){
-
-    if (!recog) return;
-
-    if (lang==="en") recog.lang = 'en-US';
-
-    else if (lang==="uz") recog.lang = 'uz-UZ';
-
-    else if (lang==="ru") recog.lang = 'ru-RU';
-
-  }
-
-
-
-  // Assistant (pantry-aware and filter-aware)
-
-  function assistantReply(text){
-
-    const msg = document.createElement("div"); msg.className="assistant-msg"; msg.textContent = text;
-
-    assistantMessages.appendChild(msg); assistantMessages.scrollTop = assistantMessages.scrollHeight;
-
-  }
-
-  assistantSend.addEventListener("click", ()=>{
-
-    const q = assistantInput.value.trim();
-
-    if (!q) return;
-
-    const userMsg = document.createElement("div"); userMsg.className="assistant-msg"; userMsg.textContent = "You: " + q;
-
-    assistantMessages.appendChild(userMsg);
-
-    assistantInput.value = "";
-
-
-
-    // context
-
-    const haveNames = new Set(pantry.map(p=>canonicalName(p.name)));
-
-    const underTime = (/(\d+)\s*min/i.exec(q) || (/(\d+)\s*мин/i.exec(q)) || (/(\d+)\s*daq/i.exec(q)))?.[1];
-
-    const timeLimit = underTime ? parseInt(underTime,10) : null;
-
-    const wantVegan = /vegan|веган|vegan/i.test(q);
-
-    const wantDiabetic = /diabet|диабет|diabetik/i.test(q);
-
-    const wantHP = /high.?protein|белков|oqsil/i.test(q);
-
-
-
-    let pool = recipes.map(r=>computeRecipe(r));
-
-    if (timeLimit) pool = pool.filter(r=>r.time <= timeLimit);
-
-    if (wantVegan) pool = pool.filter(r=>r.dietTags.includes("vegan"));
-
-    if (wantDiabetic) pool = pool.filter(r=>r.dietTags.includes("diabetic"));
-
-    if (wantHP) pool = pool.filter(r=>r.dietTags.includes("high_protein"));
-
-
-
-    // rank by pantry coverage
-
-    pool.sort((a,b)=> (b.haveCount/b.totalCount) - (a.haveCount/a.totalCount));
-
-
-
-    const picks = pool.slice(0,3).map(r=>`${r.name} (${r.time}m, match ${Math.round(r.haveCount/r.totalCount*100)}%)`);
-
-    if (!picks.length){
-
-      assistantReply("No perfect matches. Try adding pantry quantities, relaxing filters, or opening Prices to adjust items.");
-
-      return;
-
-    }
-
-    assistantReply("Top picks: " + picks.join(" · "));
-
-  });
-
-
-
-  // i18n apply
-
-  function applyI18n(){
-
-    document.getElementById("tagline").textContent = i18n.tagline[lang];
-
-    document.getElementById("persistNote").textContent = i18n.persistNote[lang];
-
-    document.getElementById("pantryTitle").textContent = i18n.pantryTitle[lang];
-
-    document.getElementById("tipsTitle").textContent = i18n.tipsTitle[lang];
-
-    document.getElementById("tip1").textContent = i18n.tip1[lang];
-
-    document.getElementById("tip2").textContent = i18n.tip2[lang];
-
-    document.getElementById("tip3").textContent = i18n.tip3[lang];
-
-    document.getElementById("tip4").textContent = i18n.tip4[lang];
-
-    document.getElementById("tip5").textContent = i18n.tip5[lang];
-
-    document.getElementById("footerNote").textContent = i18n.footerNote[lang];
-
-    document.getElementById("ingTitle").textContent = i18n.ingTitle[lang];
-
-    document.getElementById("spiceTitle").textContent = i18n.spiceTitle[lang];
-
-    document.getElementById("missingLabel").textContent = i18n.missingLabel[lang];
-
-    document.getElementById("stepsTitle").textContent = i18n.stepsTitle[lang];
-
-    document.getElementById("priceTitle").textContent = i18n.priceTitle[lang];
-
-    document.getElementById("cartTitle").textContent = i18n.cartTitle[lang];
-
-    document.getElementById("addToCart").textContent = i18n.addToCart[lang];
-
-    document.getElementById("assistantTitle").textContent = i18n.assistantTitle[lang];
-
-    document.getElementById("saveTitle").textContent = i18n.saveTitle[lang];
-
-    document.getElementById("modalCookMode").textContent = i18n.cookMode[lang];
-
-    document.getElementById("modalSave").textContent = i18n.saveButton[lang];
-
-    document.getElementById("modalUnsave").textContent = i18n.unsaveButton[lang];
-
-    modalClose.textContent = i18n.close[lang];
-
-  }
-
-
-
-  // UI events
-
-  addIngredientBtn.addEventListener("click", addPantryItemFromInput);
-
-  ingredientInput.addEventListener("keyup", (e)=>{ if (e.key === "Enter") { addPantryItemFromInput(); suggestionsContainer.innerHTML = ""; } updateSuggestions(); });
-
-  ingredientInput.addEventListener("input", updateSuggestions);
-
-  clearAllBtn.addEventListener("click", ()=>{ pantry=[]; savePantry(); renderPantry(); updateRecipes(); });
-
-  openTipsBtn.addEventListener("click", ()=> tipsDialog.showModal());
-
-  difficultyFilter.addEventListener("change", updateRecipes);
-
-  timeFilter.addEventListener("change", updateRecipes);
-
-  servingsInput.addEventListener("change", updateRecipes);
-
-  langSelect.addEventListener("change", ()=>{
-
-    lang = langSelect.value; localStorage.setItem("fl_lang", lang);
-
-    applyI18n(); renderCategoryButtons(); renderDietButtons(); updateRecogLang(); updateRecipes();
-
-  });
-
-  surpriseBtn.addEventListener("click", ()=> {
-
-    const idx = Math.floor(Math.random()*recipes.length);
-
-    openRecipeModal(computeRecipe(recipes[idx]));
-
-  });
-
-
-
-  // Initial render
-
-  applyI18n();
-
-  renderCategoryButtons();
-
-  renderDietButtons();
-
-  renderPantry();
-
-  renderSaved();
-
-  renderCart();
-
+  pantryCountEl.textContent = i18n.pantryCount(pantry.length)[lang];
+}
+function savePantry(){ localStorage.setItem("fl_pantry", JSON.stringify(pantry)); }
+function addPantryItemFromInput(){
+  const parsed = parsePantryInput(ingredientInput.value);
+  ingredientInput.value = "";
+  if (!parsed){ showToast("Could not parse. Try: 'rice 500g'"); return; }
+  const existing = pantry.find(p=>p.name===parsed.name && p.unit===parsed.unit);
+  if (existing){ existing.qty += parsed.qty; }
+  else pantry.push(parsed);
+  savePantry(); renderPantry(); updateRecipes();
+}
+
+// Favorites
+function toggleFavorite(recipeName){
+  if (favorites.includes(recipeName)) favorites = favorites.filter(f=>f!==recipeName);
+  else favorites.push(recipeName);
+  localStorage.setItem("fl_favs", JSON.stringify(favorites));
   updateRecipes();
+}
 
+// Saved collections
+function saveRecipe(recipe){
+  if (saved.find(s=>s.recipeName===recipe.name)) { showToast("Already saved"); return; }
+  const entry = {recipeName:recipe.name, date:new Date().toISOString()};
+  saved.unshift(entry);
+  localStorage.setItem("fl_saved", JSON.stringify(saved));
+  renderSaved();
+  showToast("Recipe saved");
+}
+function unsaveRecipe(recipe){
+  saved = saved.filter(s=>s.recipeName!==recipe.name);
+  localStorage.setItem("fl_saved", JSON.stringify(saved));
+  renderSaved();
+  showToast("Recipe unsaved");
+}
+function renderSaved(){
+  saveList.innerHTML = "";
+  saved.slice(0,20).forEach(s=>{
+    const row = document.createElement("div");
+    row.className = "save-item";
+    const name = document.createElement("span"); name.textContent = s.recipeName;
+    const del = document.createElement("button"); del.className="ghost"; del.textContent="×";
+    del.addEventListener("click", ()=>{
+      saved = saved.filter(x=>x.recipeName!==s.recipeName);
+      localStorage.setItem("fl_saved", JSON.stringify(saved));
+      renderSaved();
+    });
+    row.appendChild(name); row.appendChild(del);
+    saveList.appendChild(row);
+  });
+}
+
+// Scale quantities
+function scaleQty(baseQty, baseServings, newServings){ return Math.round(baseQty * (newServings / baseServings)); }
+
+// Price helpers
+function priceOf(name, qty, unit){
+  const entry = priceCatalog[canonicalName(name)];
+  if (!entry) return 0;
+  let q = qty;
+  if (entry.unit !== unit){
+    if (entry.unit==="g" && unit==="kg") q = qty*1000;
+    else if (entry.unit==="ml" && unit==="l") q = qty*1000;
+    else if (entry.unit==="item" && unit!=="item"){
+      if (canonicalName(name)==="egg" && unit==="g") q = Math.round(qty/50);
+    }
+  }
+  return q * entry.price;
+}
+
+// Compute recipe scaled/missing
+function computeRecipe(r){
+  const servings = parseInt(servingsInput.value,10) || r.servingsBase || 4;
+  const ingScaled = r.ingredients.map(i=>({name:i.name, qty:scaleQty(i.qty, r.servingsBase || 4, servings), unit:i.unit}));
+  const spicesScaled = (r.spices||[]).map(s=>({name:s.name, qty:scaleQty(s.qty, r.servingsBase || 4, servings), unit:s.unit}));
+  let haveCount = 0, totalCount = ingScaled.length;
+  let missingItems = [];
+  ingScaled.forEach(req=>{
+    const p = pantry.find(x=>x.name===req.name && x.unit===req.unit);
+    if (p && p.qty >= req.qty){ haveCount++; }
+    else {
+      const missingQty = req.qty - (p ? p.qty : 0);
+      missingItems.push({name:req.name, qty:missingQty>0?missingQty:req.qty, unit:req.unit});
+    }
+  });
+  const dietTags = Array.from(dietTagsForRecipe(r));
+  return Object.assign({}, r, { ingScaled, spicesScaled, haveCount, totalCount, missingItems, dietTags });
+}
+
+// Render recipes (cards + images)
+function updateRecipes(){
+  recipesGrid.innerHTML = "";
+  const diff = difficultyFilter.value;
+  const tmax = timeFilter.value ? parseInt(timeFilter.value,10) : null;
+  let mapped = recipes.map(r=>computeRecipe(r));
+
+  mapped = mapped.filter(r=>{
+    if (diff && r.difficulty !== diff) return false;
+    if (tmax && r.time > tmax) return false;
+    if (activeCategory){
+      const belongs = r.ingScaled.some(i=>ingredientCategoryOf(i.name) === activeCategory);
+      if (!belongs) return false;
+    }
+    if (activeDiets.size){
+      for (let d of activeDiets){
+        if (!r.dietTags.includes(d)) return false;
+      }
+    }
+    return true;
+  });
+
+  mapped.sort((a,b)=>{
+    const am = a.haveCount / a.totalCount;
+    const bm = b.haveCount / b.totalCount;
+    if (bm !== am) return bm - am;
+    return a.time - b.time;
+  });
+
+  if (!mapped.length){
+    emptyState.textContent = i18n.emptyState[lang];
+    emptyState.style.display = "block";
+    return;
+  } else emptyState.style.display = "none";
+
+  mapped.forEach(r=>{
+    const card = document.createElement("div"); card.className = "card";
+
+    const header = document.createElement("div"); header.className = "card-head";
+    const title = document.createElement("strong"); title.textContent = r.name;
+    const headerRight = document.createElement("div"); headerRight.className="inline";
+    const time = document.createElement("span"); time.className = "muted"; time.textContent = `${r.time}m`;
+    const favBtn = document.createElement("button"); favBtn.className = "ghost"; favBtn.title = "Favorite"; favBtn.textContent = favorites.includes(r.name) ? "★" : "☆";
+    favBtn.addEventListener("click",(e)=>{ e.stopPropagation(); toggleFavorite(r.name); });
+    headerRight.appendChild(time); headerRight.appendChild(favBtn);
+    header.appendChild(title); header.appendChild(headerRight);
+
+    const imgWrap = document.createElement("div"); imgWrap.className = "card-img";
+    if (r.img){
+      imgWrap.innerHTML = `<img src="${r.img}" alt="${r.name}" style="width:100%;height:100%;object-fit:cover;border-radius:12px">`;
+    } else {
+      imgWrap.innerHTML = `<div style="text-align:center"><div style="font-size:38px;font-weight:700">${initials(r.name)}</div><div class="muted">${r.cuisine}</div></div>`;
+    }
+
+    const meta = document.createElement("div"); meta.className = "card-meta";
+    const cuisine = document.createElement("span"); cuisine.className = "badge"; cuisine.textContent = r.cuisine;
+    const diffBadge = document.createElement("span"); diffBadge.className = "badge"; diffBadge.textContent = r.difficulty;
+    const matchPercent = Math.round((r.haveCount / r.totalCount) * 100);
+    const matchEl = document.createElement("span"); matchEl.className = "badge green"; matchEl.textContent = `${matchPercent}% match`;
+    const dietBadge = document.createElement("span"); dietBadge.className = "badge gray"; dietBadge.textContent = r.dietTags.join(", ");
+
+    meta.appendChild(cuisine); meta.appendChild(diffBadge); meta.appendChild(matchEl); meta.appendChild(dietBadge);
+
+    const actions = document.createElement("div"); actions.className = "inline"; actions.style.justifyContent="space-between";
+    const missingCount = document.createElement("span"); missingCount.className = "muted"; missingCount.textContent = `Missing: ${r.missingItems.length}`;
+    const viewBtn = document.createElement("button"); viewBtn.className = "ghost"; viewBtn.textContent = "View";
+    viewBtn.addEventListener("click", ()=> openRecipeModal(r));
+
+    actions.appendChild(missingCount); actions.appendChild(viewBtn);
+
+    card.appendChild(header); card.appendChild(imgWrap); card.appendChild(meta); card.appendChild(actions);
+    card.addEventListener("click", ()=> openRecipeModal(r));
+    recipesGrid.appendChild(card);
+  });
+}
+function initials(name){ return name.split(" ").slice(0,2).map(w=>w[0]).join("").toUpperCase(); }
+
+let currentRecipe = null;
+
+function openRecipeModal(r){
+  currentRecipe = r;
+  const missing = r.missingItems;
+  const matchPercent = Math.round((r.haveCount / r.totalCount) * 100);
+  const servings = parseInt(servingsInput.value,10) || r.servingsBase || 4;
+
+  modalTitle.textContent = r.name;
+  modalMeta.textContent = `${r.cuisine} • ${r.difficulty} • ${r.time} min`;
+
+  if (r.img) {
+    modalImg.src = r.img;
+    modalImg.alt = r.name;
+    modalImg.style.display = "block";
+  } else {
+    modalImg.src = "";
+    modalImg.alt = "";
+    modalImg.style.display = "none";
+  }
+
+  modalIngredients.innerHTML = "";
+  r.ingScaled.forEach(i=>{
+    const row = document.createElement("div"); row.className="quant";
+    const left = document.createElement("span"); left.className="qty"; left.textContent = `${i.name}`;
+    const right = document.createElement("span"); right.className="need"; right.textContent = `${i.qty}${i.unit}`;
+    row.appendChild(left); row.appendChild(right); modalIngredients.appendChild(row);
+  });
+
+  modalSpices.innerHTML = "";
+  r.spicesScaled.forEach(s=>{
+    const row = document.createElement("div"); row.className="quant";
+    const left = document.createElement("span"); left.className="qty"; left.textContent = `${s.name}`;
+    const right = document.createElement("span"); right.className="need"; right.textContent = `${s.qty}${s.unit}`;
+    row.appendChild(left); row.appendChild(right); modalSpices.appendChild(row);
+  });
+
+  modalMissing.textContent = missing.length ? missing.map(m=>`${m.name} ${m.qty}${m.unit}`).join(", ") : "None";
+  matchBadge.textContent = `${matchPercent}% match`;
+  servingsBadge.textContent = i18n.servingsBadge(servings)[lang];
+
+  // price breakdown
+  priceBreakdown.innerHTML = "";
+  let sumUZS = 0;
+  missing.forEach(m=>{
+    const cost = priceOf(m.name, m.qty, m.unit);
+    sumUZS += cost;
+    const row = document.createElement("div"); row.className="inline"; row.style.justifyContent="space-between";
+    const left = document.createElement("span"); left.textContent = `${m.name} ${m.qty}${m.unit}`;
+    const right = document.createElement("span"); right.textContent = `UZS ${Math.round(cost).toLocaleString()}`;
+    row.appendChild(left); row.appendChild(right); priceBreakdown.appendChild(row);
+  });
+  totalUZS.textContent = `UZS ${Math.round(sumUZS).toLocaleString()}`;
+  totalUSD.textContent = `$${(sumUZS / usdRate).toFixed(2)}`;
+
+  modalFav.textContent = favorites.includes(r.name) ? "★" : "☆";
+  modalSave.textContent = i18n.saveButton[lang];
+  modalUnsave.textContent = i18n.unsaveButton[lang];
+
+  recipeModal.showModal();
+}
+
+modalFav.addEventListener("click", ()=>{ if (!currentRecipe) return; toggleFavorite(currentRecipe.name); modalFav.textContent = favorites.includes(currentRecipe.name) ? "★" : "☆"; });
+modalSave.addEventListener("click", ()=>{ if (!currentRecipe) return; saveRecipe(currentRecipe); });
+modalUnsave.addEventListener("click", ()=>{ if (!currentRecipe) return; unsaveRecipe(currentRecipe); });
+modalClose.addEventListener("click", ()=> recipeModal.close());
+
+addToCartBtn.addEventListener("click", ()=> {
+  if (!currentRecipe) return;
+  currentRecipe.missingItems.forEach(m=>{
+    const existing = cart.find(c=>c.name===m.name && c.unit===m.unit);
+    if (existing) existing.qty += m.qty; else cart.push({name:m.name, qty:m.qty, unit:m.unit});
+  });
+  saveCart(); renderCart(); showToast("Added missing items to cart");
 });
 
-</script>
+generateListBtn.addEventListener("click", ()=> {
+  if (!currentRecipe) return;
+  const missing = currentRecipe.missingItems || [];
+  const list = missing.length ? missing.map(x => "- " + x.name + " " + x.qty + x.unit).join("\n") : "- All set!";
+  alert("Shopping list:\n\n" + list);
+});
 
+cookNowBtn.addEventListener("click", ()=> { if (!currentRecipe) return; alert("Marked as cooked: " + currentRecipe.name); recipeModal.close(); });
+
+// Cook Mode
+modalCookMode.addEventListener("click", ()=>{
+  if (!currentRecipe) return;
+  cookContent.innerHTML = "";
+  currentRecipe.steps.forEach((st, idx)=>{
+    const row = document.createElement("div"); row.className="inline"; row.style.justifyContent="space-between";
+    const left = document.createElement("div"); left.textContent = `${idx+1}. ${st}`;
+    const tools = document.createElement("div"); tools.className="inline";
+    const check = document.createElement("button"); check.className="ghost"; check.textContent = "✓";
+    check.addEventListener("click", ()=> { left.style.textDecoration="line-through"; showToast("Step completed"); });
+    const timer = document.createElement("button"); timer.className="ghost"; timer.textContent = "⏱ 5m";
+    timer.addEventListener("click", ()=>{
+      let t=300; timer.disabled=true;
+      const iv = setInterval(()=>{ t--; timer.textContent = `⏱ ${Math.floor(t/60)}m ${t%60}s`; if (t<=0){ clearInterval(iv); timer.textContent = "⏱ done"; timer.disabled=false; showToast("Timer done"); } },1000);
+    });
+    tools.appendChild(check); tools.appendChild(timer);
+    row.appendChild(left); row.appendChild(tools);
+    cookContent.appendChild(row);
+  });
+  cookDialog.showModal();
+});
+cookClose.addEventListener("click", ()=> cookDialog.close());
+
+// Prices UI
+function renderPrices(){
+  pricesTable.innerHTML = "";
+  Object.entries(priceCatalog).forEach(([name,entry])=>{
+    const tr = document.createElement("tr");
+    const tdName = document.createElement("td"); tdName.textContent = name;
+    const tdUnit = document.createElement("td"); tdUnit.textContent = entry.unit;
+    const tdPrice = document.createElement("td");
+    const input = document.createElement("input");
+    input.type="number"; input.step="0.01"; input.value=entry.price; input.style.width="120px";
+    input.addEventListener("change", ()=>{
+      entry.price = parseFloat(input.value||"0");
+      savePrices(); renderCart(); if (currentRecipe) openRecipeModal(currentRecipe);
+    });
+    tdPrice.appendChild(input);
+    const tdDel = document.createElement("td");
+    const delBtn = document.createElement("button"); delBtn.className="ghost"; delBtn.textContent="Delete";
+    delBtn.addEventListener("click", ()=>{
+      delete priceCatalog[name]; savePrices(); renderPrices(); renderCart();
+    });
+    tdDel.appendChild(delBtn);
+    tr.appendChild(tdName); tr.appendChild(tdUnit); tr.appendChild(tdPrice); tr.appendChild(tdDel);
+    pricesTable.appendChild(tr);
+  });
+}
+function savePrices(){ localStorage.setItem("fl_prices", JSON.stringify(priceCatalog)); }
+addPriceItemBtn.addEventListener("click", ()=>{
+  const name = canonicalName(newItemName.value || ""); const unit = newItemUnit.value; const price = parseFloat(newItemPrice.value||"0");
+  if (!name || !price){ showToast("Name and price required"); return; }
+  priceCatalog[name] = {unit, price};
+  newItemName.value=""; newItemPrice.value="";
+  savePrices(); renderPrices();
+});
+openPricesBtn.addEventListener("click", ()=> { renderPrices(); pricesDialog.showModal(); });
+pricesClose.addEventListener("click", ()=> pricesDialog.close());
+saveRatesBtn.addEventListener("click", ()=>{
+  usdRate = parseFloat(usdRateInput.value||"12600");
+  localStorage.setItem("fl_usdRate", usdRate);
+  renderCart(); if (currentRecipe) openRecipeModal(currentRecipe);
+  showToast("Rates saved");
+});
+
+// Cart
+function saveCart(){ localStorage.setItem("fl_cart", JSON.stringify(cart)); }
+function renderCart(){
+  cartList.innerHTML = "";
+  let sumUZS = 0;
+  cart.forEach(item=>{
+    const cost = priceOf(item.name, item.qty, item.unit); sumUZS += cost;
+    const row = document.createElement("div"); row.className="cart-item";
+    const left = document.createElement("span"); left.textContent = `${item.name} ${item.qty}${item.unit}`;
+    const right = document.createElement("div"); right.className="inline";
+    const priceEl = document.createElement("span"); priceEl.className="muted"; priceEl.textContent = `UZS ${Math.round(cost).toLocaleString()}`;
+    const delBtn = document.createElement("button"); delBtn.className="ghost"; delBtn.textContent = "×";
+    delBtn.addEventListener("click", ()=>{ cart = cart.filter(c=>!(c.name===item.name && c.unit===item.unit)); saveCart(); renderCart(); });
+    right.appendChild(priceEl); right.appendChild(delBtn);
+    row.appendChild(left); row.appendChild(right); cartList.appendChild(row);
+  });
+  cartUZS.textContent = `UZS ${Math.round(sumUZS).toLocaleString()}`;
+  cartUSD.textContent = `$${(sumUZS / usdRate).toFixed(2)}`;
+  cartItemsLabel.textContent = i18n.cartItems(cart.length)[lang];
+}
+clearCartBtn.addEventListener("click", ()=>{ cart=[]; saveCart(); renderCart(); });
+
+// CSV pantry import/export
+exportPantryBtn.addEventListener("click", ()=>{
+  const rows = pantry.map(p=>`${p.name},${p.qty},${p.unit}`);
+  const csv = ["name,qty,unit", ...rows].join("\n");
+  const blob = new Blob([csv], {type:"text/csv"}); const url = URL.createObjectURL(blob);
+  const a = document.createElement("a"); a.href=url; a.download="pantry.csv"; a.click(); setTimeout(()=>URL.revokeObjectURL(url),1000);
+});
+importPantryBtn.addEventListener("click", ()=>{
+  const inp = document.createElement("input"); inp.type="file"; inp.accept=".csv,text/csv";
+  inp.onchange = (e)=>{
+    const file = e.target.files[0]; if (!file) return;
+    const reader = new FileReader();
+    reader.onload = ()=>{
+      const text = reader.result; const lines = text.trim().split(/\r?\n/).slice(1);
+      lines.forEach(line=>{
+        const [name,qty,unit] = line.split(",");
+        const cn = canonicalName(name); const q = parseFloat(qty||"0"); const u = unit||"g";
+        if (cn && q){ const existing = pantry.find(p=>p.name===cn && p.unit===u);
+          if (existing) existing.qty += q; else pantry.push({name:cn, qty:q, unit:u});
+        }
+      });
+      savePantry(); renderPantry(); updateRecipes(); showToast("Pantry imported");
+    };
+    reader.readAsText(file);
+  };
+  inp.click();
+});
+
+// Voice input
+let recog = null;
+if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window){
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  recog = new SR(); recog.continuous = false; recog.interimResults = false;
+  updateRecogLang();
+  voiceBtn.addEventListener("click", ()=> { try { recog.start(); } catch(e){} });
+  recog.onresult = function(e){
+    const txt = e.results[0][0].transcript;
+    txt.split(/[,\n]+/).forEach(w => { ingredientInput.value = w.trim(); addPantryItemFromInput(); });
+  };
+} else voiceBtn.style.display = "none";
+function updateRecogLang(){
+  if (!recog) return;
+  if (lang==="en") recog.lang = 'en-US';
+  else if (lang==="uz") recog.lang = 'uz-UZ';
+  else if (lang==="ru") recog.lang = 'ru-RU';
+}
+
+// Assistant
+function assistantReply(text){
+  const msg = document.createElement("div"); msg.className="assistant-msg"; msg.textContent = text;
+  assistantMessages.appendChild(msg); assistantMessages.scrollTop = assistantMessages.scrollHeight;
+}
+assistantSend.addEventListener("click", ()=>{
+  const q = assistantInput.value.trim();
+  if (!q) return;
+  const userMsg = document.createElement("div"); userMsg.className="assistant-msg"; userMsg.textContent = "You: " + q;
+  assistantMessages.appendChild(userMsg);
+  assistantInput.value = "";
+
+  const underTime = (/(\d+)\s*min/i.exec(q) || (/(\d+)\s*мин/i.exec(q)) || (/(\d+)\s*daq/i.exec(q)))?.[1];
+  const timeLimit = underTime ? parseInt(underTime,10) : null;
+  const wantVegan = /vegan|веган/i.test(q);
+  const wantDiabetic = /diabet|диабет|diabetik/i.test(q);
+  const wantHP = /high.?protein|белков|oqsil/i.test(q);
+
+  let pool = recipes.map(r=>computeRecipe(r));
+  if (timeLimit) pool = pool.filter(r=>r.time <= timeLimit);
+  if (wantVegan) pool = pool.filter(r=>r.dietTags.includes("vegan"));
+  if (wantDiabetic) pool = pool.filter(r=>r.dietTags.includes("diabetic"));
+  if (wantHP) pool = pool.filter(r=>r.dietTags.includes("high_protein"));
+
+  pool.sort((a,b)=> (b.haveCount/b.totalCount) - (a.haveCount/a.totalCount));
+  const picks = pool.slice(0,3).map(r=>`${r.name} (${r.time}m, match ${Math.round(r.haveCount/r.totalCount*100)}%)`);
+  if (!picks.length){
+    assistantReply("No perfect matches. Try adding pantry quantities, relaxing filters, or opening Prices to adjust items.");
+    return;
+  }
+  assistantReply("Top picks: " + picks.join(" · "));
+});
+
+// i18n apply
+function applyI18n(){
+  document.getElementById("tagline").textContent = i18n.tagline[lang];
+  document.getElementById("persistNote").textContent = i18n.persistNote[lang];
+  document.getElementById("pantryTitle").textContent = i18n.pantryTitle[lang];
+  document.getElementById("tipsTitle").textContent = i18n.tipsTitle[lang];
+  document.getElementById("tip1").textContent = i18n.tip1[lang];
+  document.getElementById("tip2").textContent = i18n.tip2[lang];
+  document.getElementById("tip3").textContent = i18n.tip3[lang];
+  document.getElementById("tip4").textContent = i18n.tip4[lang];
+  document.getElementById("tip5").textContent = i18n.tip5[lang];
+  document.getElementById("footerNote").textContent = i18n.footerNote[lang];
+  document.getElementById("ingTitle").textContent = i18n.ingTitle[lang];
+  document.getElementById("spiceTitle").textContent = i18n.spiceTitle[lang];
+  document.getElementById("missingLabel").textContent = i18n.missingLabel[lang];
+  document.getElementById("stepsTitle").textContent = i18n.stepsTitle[lang];
+  document.getElementById("priceTitle").textContent = i18n.priceTitle[lang];
+  document.getElementById("cartTitle").textContent = i18n.cartTitle[lang];
+  document.getElementById("addToCart").textContent = i18n.addToCart[lang];
+  document.getElementById("assistantTitle").textContent = i18n.assistantTitle[lang];
+  document.getElementById("saveTitle").textContent = i18n.saveTitle[lang];
+  document.getElementById("modalCookMode").textContent = i18n.cookMode[lang];
+  document.getElementById("modalSave").textContent = i18n.saveButton[lang];
+  document.getElementById("modalUnsave").textContent = i18n.unsaveButton[lang];
+  modalClose.textContent = i18n.close[lang];
+}
+
+// UI events
+addIngredientBtn.addEventListener("click", addPantryItemFromInput);
+ingredientInput.addEventListener("keyup", (e)=>{ if (e.key === "Enter") { addPantryItemFromInput(); suggestionsContainer.innerHTML = ""; } updateSuggestions(); });
+ingredientInput.addEventListener("input", updateSuggestions);
+clearAllBtn.addEventListener("click", ()=>{ pantry=[]; savePantry(); renderPantry(); updateRecipes(); });
+openTipsBtn.addEventListener("click", ()=> tipsDialog.showModal());
+difficultyFilter.addEventListener("change", updateRecipes);
+timeFilter.addEventListener("change", updateRecipes);
+servingsInput.addEventListener("change", updateRecipes);
+langSelect.addEventListener("change", ()=>{
+  lang = langSelect.value; localStorage.setItem("fl_lang", lang);
+  applyI18n(); renderCategoryButtons(); renderDietButtons(); updateRecogLang(); updateRecipes();
+});
+surpriseBtn.addEventListener("click", ()=> {
+  const idx = Math.floor(Math.random()*recipes.length);
+  openRecipeModal(computeRecipe(recipes[idx]));
+});
+
+// Initial render
+applyI18n();
+renderCategoryButtons();
+renderDietButtons();
+renderPantry();
+renderSaved();
+renderCart();
+updateRecipes();
+});
+</script>
 </body>
 </html>
-
